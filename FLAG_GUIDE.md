@@ -134,8 +134,50 @@
 - **ChakraVexillomantia4.png**: Maps 7 chakra points to flag pole positions (Crown/Gold Yellow at tip through Root/Goldenrod at base). Each nail position = different chakra. INSPIRATION FOR FH5: Chakra-based progression/upgrade system tied to flag anatomy.
 - **FLAGISTAN AWAITS.png**: Beach covered in flags under palm tree. "La Societe du Troisieme Etage." INSPIRATION FOR FH5: Flagistan as a location/biome, tropical flag deployment.
 
-### Next Sequel Seed: FLAGHACK 5
-- **Concept**: "FLAGHACK 5: CHAKRA VEXILLOMANTIA" - A roguelike dungeon crawler where the Vexillomancer's flag serves as a weapon/tool with 7 chakra-point upgrades. Navigate the levels of Flagistan, a mythical land of pure Flag energy. Each chakra upgrade unlocks new abilities tied to the flag's anatomy.
-- **Genre Shift**: Roguelike dungeon crawler (from tower defense)
-- **Key Innovation**: The flag itself as a multi-upgrade weapon (7 chakra slots)
-- **Addictiveness Hooks**: Roguelike permadeath + meta-progression, chakra build variety, Flagistan exploration discovery
+---
+
+## FLAGHACK 5: CHAKRA VEXILLOMANTIA
+
+### Concept
+- **Genre**: Roguelike Dungeon Crawler
+- **Theme**: Descend through 7 floors of Flagistan (a hyperbolic pentagonal realm of pure Flag energy) to reach the Omega Configuration
+- **Key Innovation**: The flag is a melee weapon with 7 chakra upgrade slots (Root through Crown). Crystals of Implied Flag unlock chakras. Each floor corresponds to one chakra.
+- **Addictiveness Hooks**: Permadeath tension, chakra build variety (7 upgrades affecting combat/movement/vision/economy), floor-by-floor progression with themed environments, crystal collection compulsion
+
+### What improves over FH4
+- Genre shift to dungeon crawler adds exploration/discovery
+- Flag as melee weapon (not just placed) = direct combat engagement
+- Chakra system provides meaningful upgrades with distinct playstyle effects
+- 7 themed floors with distinct aesthetics (Playa Depths -> Heart of Flagistan)
+- 5 enemy types with different behaviors (melee, ranged, fast, flag-stealing, tanky)
+- Dash mechanic with i-frames for skillful play
+- Crystal collection gives clear goals per floor
+
+### Lore Integration
+- **Flagistan**: Hyperbolic pentagonal realm with Crystals as "infinite-order implied Flags" (from wiki)
+- **Omega Configuration**: The ultimate arrangement flags move toward (from Vexillomancy wiki)
+- **Flag Psychosis**: Referenced in enemy behavior (Psychosis Wraith enemy type)
+- **The Great Chronoschism**: Floor 6 theme - temporal fractures
+- **Geomantic Command Center**: Built by Dr. Beef Supreme (from wiki)
+
+### Completion Status: BUILT
+- **Folder**: `flaghack5/`
+- **Files**: 9 source modules + index.html
+- **Architecture**: Three.js ES modules + importmap (consistent pattern)
+- **Core Systems**: Procedural dungeon generation, melee combat with flag weapon, 7 chakra upgrades, 5 enemy types, 7 themed floors, flag placement/ley lines/pentagrams (in dungeon), crystal pickups, dash mechanic, room-based enemy spawning, floor transitions
+- **Lore Compliance**: All rules followed
+
+### Alch3my Wiki Fetches
+- **Flagistan page**: Hyperbolic pentagonal tiling, Crystals as infinite-order implied flags, waves of understanding emanating between Flag configurations, Geomantic Command Center
+- **Vexillomancy page**: Casting = spreading flags into observable area, Signifiers channel will of the Crystal, Flag Psychosis trance state, Omega Configuration as ultimate goal
+- **Null-time** (again): Time Crystal, Great Chronoschism
+
+### Post-Build FLAG_DOCS Review
+- **Ban Flags.jpg**: "BAN FLAGS FROM BURNS" - anti-Flag propaganda poster. INSPIRATION FOR FH6: An enemy faction of Flag Banners (anti-Vexillomancers) as antagonists. Political faction warfare mechanic.
+- **Find Your Flags.png**: Beautiful meadow scene with golden flags everywhere. "La Societe du Troisieme Etage." INSPIRATION FOR FH6: Open-world exploration collecting scattered flags across biomes. The Third Floor Society as a faction/questgiver.
+
+### Next Sequel Seed: FLAGHACK 6
+- **Concept**: "FLAGHACK 6: THE BAN" - A survival/base-building game where the Anti-Flag Faction ("The Ban") has outlawed flags from all Burns. The Vexillomancer must build a hidden flag sanctuary, recruit Signifiers, and lead a resistance. Inspired by "Ban Flags from Burns" propaganda and "Find Your Flags" open-world imagery.
+- **Genre Shift**: Survival base builder (from dungeon crawler)
+- **Key Innovation**: Faction reputation system (Vexillians vs The Ban), stealth flag placement, Signifier recruitment
+- **Addictiveness Hooks**: Base building (sunk cost), faction reputation (social hooks), stealth tension (loss aversion), Signifier collection (collection compulsion)

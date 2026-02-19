@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLAGHACK 5: CHAKRA VEXILLOMANTIA</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0608; overflow: hidden; font-family: 'Courier New', monospace; cursor: crosshair; }
+canvas { display: block; }
+
+#title-screen {
+    position: fixed; inset: 0; z-index: 100;
+    background: radial-gradient(ellipse at center, #1a0a20 0%, #0a0608 70%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 1s;
+}
+#title-screen h1 {
+    font-size: 3.5em; color: #ffd700; text-shadow: 0 0 30px #ffd700, 0 0 60px #aa8800;
+    letter-spacing: 0.15em; margin-bottom: 0.05em;
+}
+#title-screen h2 {
+    font-size: 1.4em; color: #cc88ff; letter-spacing: 0.3em; margin-bottom: 1.5em;
+}
+#title-screen .subtitle { font-size: 0.85em; color: #666; margin-bottom: 0.5em; }
+#title-screen .start-prompt { font-size: 1.1em; color: #ffd700; animation: pulse 2s infinite; margin-top: 2em; }
+@keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+/* Chakra indicators on side */
+#chakra-bar {
+    position: fixed; left: 10px; top: 50%; transform: translateY(-50%);
+    z-index: 10; display: none; flex-direction: column; gap: 6px; align-items: center;
+}
+.chakra-slot {
+    width: 32px; height: 32px; border-radius: 50%; border: 2px solid #333;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; position: relative; transition: all 0.3s;
+}
+.chakra-slot.unlocked { border-color: #ffd700; box-shadow: 0 0 8px currentColor; }
+.chakra-slot .chakra-label {
+    position: absolute; left: 38px; font-size: 9px; color: #888;
+    white-space: nowrap; display: none;
+}
+.chakra-slot:hover .chakra-label { display: block; }
+
+/* HUD */
+#hud {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: none; padding: 8px 15px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, transparent 100%);
+    pointer-events: none;
+}
+#hud-top { display: flex; justify-content: space-between; }
+#hud-left, #hud-right { display: flex; gap: 20px; }
+.hud-item { display: flex; flex-direction: column; gap: 2px; }
+.hud-label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.1em; }
+.hud-value { font-size: 15px; color: #ffd700; font-weight: bold; }
+.hud-value.hp { color: #44ff44; }
+.hud-value.flagic { color: #cc88ff; }
+.hud-value.floor { color: #ff8844; }
+
+/* Minimap */
+#minimap {
+    position: fixed; bottom: 10px; right: 10px; z-index: 10;
+    width: 150px; height: 150px; display: none;
+    background: rgba(0,0,0,0.7); border: 1px solid #333; border-radius: 4px;
+}
+#minimap canvas { width: 100%; height: 100%; }
+
+/* Notifications */
+#notification {
+    position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
+    z-index: 30; display: none; padding: 8px 20px;
+    background: rgba(0,0,0,0.9); border: 1px solid #ffd700; border-radius: 6px;
+    font-size: 13px; color: #ffd700; pointer-events: none; transition: opacity 0.5s;
+    text-align: center; max-width: 400px;
+}
+
+/* Floor banner */
+#floor-banner {
+    position: fixed; top: 45%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 20; display: none; text-align: center; pointer-events: none;
+}
+#floor-banner h2 { font-size: 2.5em; color: #ffd700; text-shadow: 0 0 20px #aa8800; }
+#floor-banner p { font-size: 1em; color: #cc88ff; margin-top: 0.3em; }
+
+/* Death screen */
+#death-screen {
+    position: fixed; inset: 0; z-index: 50; display: none;
+    background: rgba(10,0,0,0.95);
+    flex-direction: column; align-items: center; justify-content: center;
+}
+#death-screen h1 { font-size: 3em; color: #ff2222; margin-bottom: 0.5em; }
+#death-screen .stats { font-size: 1em; color: #ffd700; line-height: 1.8; text-align: center; margin-bottom: 1.5em; }
+#death-screen .restart { font-size: 1.1em; color: #ffd700; animation: pulse 2s infinite; }
+
+/* Victory */
+#victory-screen {
+    position: fixed; inset: 0; z-index: 50; display: none;
+    background: radial-gradient(ellipse at center, #2a1a00 0%, #0a0608 70%);
+    flex-direction: column; align-items: center; justify-content: center;
+}
+#victory-screen h1 { font-size: 3em; color: #ffd700; text-shadow: 0 0 40px #ffd700; margin-bottom: 0.3em; }
+#victory-screen h2 { font-size: 1.5em; color: #cc88ff; margin-bottom: 1em; }
+#victory-screen .stats { font-size: 1em; color: #ffd700; line-height: 1.8; text-align: center; margin-bottom: 1.5em; }
+#victory-screen .restart { font-size: 1.1em; color: #ffd700; animation: pulse 2s infinite; }
+
+#controls-hint {
+    position: fixed; bottom: 8px; left: 10px; z-index: 10;
+    font-size: 9px; color: #333; pointer-events: none; line-height: 1.5; display: none;
+}
+</style>
+</head>
+<body>
+
+<div id="title-screen">
+    <div class="subtitle">THE FLAGHACK SERIES PRESENTS</div>
+    <h1>FLAGHACK 5</h1>
+    <h2>CHAKRA VEXILLOMANTIA</h2>
+    <div class="subtitle">A Roguelike Descent into Flagistan</div>
+    <div class="subtitle" style="margin-top:0.8em; color:#555; font-style:italic;">"Flags move inexorably towards the Omega Configuration"</div>
+    <div class="start-prompt">CLICK TO DESCEND</div>
+</div>
+
+<div id="hud">
+    <div id="hud-top">
+        <div id="hud-left">
+            <div class="hud-item"><span class="hud-label">HP</span><span class="hud-value hp" id="hud-hp">100</span></div>
+            <div class="hud-item"><span class="hud-label">Flagic</span><span class="hud-value flagic" id="hud-flagic">0</span></div>
+            <div class="hud-item"><span class="hud-label">Flags</span><span class="hud-value" id="hud-flags">5</span></div>
+        </div>
+        <div id="hud-right">
+            <div class="hud-item"><span class="hud-label">Floor</span><span class="hud-value floor" id="hud-floor">1</span></div>
+            <div class="hud-item"><span class="hud-label">Kills</span><span class="hud-value" id="hud-kills">0</span></div>
+            <div class="hud-item"><span class="hud-label">Crystals</span><span class="hud-value" id="hud-crystals">0</span></div>
+        </div>
+    </div>
+</div>
+
+<div id="chakra-bar"></div>
+
+<div id="notification"></div>
+<div id="floor-banner"><h2></h2><p></p></div>
+
+<div id="death-screen">
+    <h1>FLAGLESS</h1>
+    <div class="stats" id="death-stats"></div>
+    <div class="restart">CLICK TO TRY AGAIN</div>
+</div>
+
+<div id="victory-screen">
+    <h1>OMEGA CONFIGURATION</h1>
+    <h2>The Flags Achieve Perfection</h2>
+    <div class="stats" id="victory-stats"></div>
+    <div class="restart">CLICK FOR NEW DESCENT</div>
+</div>
+
+<div id="controls-hint">
+    WASD Move | LMB Attack | RMB Place Flag<br>
+    SPACE Dash | E Interact | 1-7 Chakra Power
+</div>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://esm.sh/three@0.170.0",
+        "three/addons/": "https://esm.sh/three@0.170.0/examples/jsm/"
+    }
+}
+</script>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
