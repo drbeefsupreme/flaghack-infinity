@@ -265,8 +265,56 @@
 - **"IF FOUND PLEASE LOSE / IF LOST RETURN TO TEMPLE"**: Flag instructions on address sticker
 - **5th dimensional Ley facet**: Flags must be aligned with higher-dimensional Ley facets
 
-### Next Sequel Seed: FLAGHACK 8
-- **Concept**: "FLAGHACK 8: THE GREAT SURVEY" - A real-time strategy / puzzle game inspired by the propaganda posters and FOOP concept. Lead the Geomantic Survey Committee to FIND and MOVE misaligned flags (FOOPs) across an expanding playa, align them with 5th-dimensional Ley facets, recruit Vexillomancers, and manifest Quantum Destiny. Soviet-propaganda-inspired recruitment mechanics.
-- **Genre Shift**: Real-time strategy / puzzle (from boss-rush)
-- **Key Innovation**: FOOP detection and realignment as core mechanic, 5th-dimensional Ley facet alignment, Geomantic Survey Committee management, propaganda/recruitment system
-- **Addictiveness Hooks**: Optimization puzzle (alignment perfection), territory expansion, recruitment cascade, FOOP discovery (collection), Quantum Destiny meter
+---
+
+## FLAGHACK 8: THE GREAT SURVEY
+
+### Concept
+- **Genre**: Real-Time Strategy / Puzzle
+- **Theme**: Lead the Geomantic Survey Committee across the playa, finding and correcting Flags Out Of Place (FOOPs), aligning them to 5th-dimensional Ley facets, and manifesting Quantum Destiny
+- **Key Innovation**: FOOP detection and realignment as core mechanic, 4 recruitable Vexillomancer types with autonomous AI, Quantum Destiny progression meter, wave-based FOOP spawning
+- **Addictiveness Hooks**: Optimization puzzle (alignment perfection), recruitment cascade, FOOP discovery (collection), Quantum Destiny meter (6 levels from Flagless to Lead Vexillomancer)
+
+### What improves over FH7
+- Genre shift to RTS/puzzle adds strategic depth and management
+- FOOP system (5 types: Fallen, Leaning, Reversed, Misaligned, Buried) as discovery mechanic
+- 4 Vexillomancer types (Seeker, Mover, Aligner, Surveyor) with autonomous AI
+- 5th-dimensional Ley facet alignment system
+- Quantum Destiny progression (6 levels) replaces simple scoring
+- Wave-based FOOP spawning with day/night multiplier
+- Propaganda slogans from real FLAG_DOCS materials
+- Playa world with camps, structures, Effigy, dust particles
+
+### Lore Integration
+- **FOOP**: Flags Out Of Place - directly from Poster A ("FLAGS OUT OF PLACE (FOOP)")
+- **Geomantic Survey Committee**: From FLAG SCHEMATICS document
+- **Ian T.M. Elmore**: Lead Vexillomancer, from 2016 Propaganda poster
+- **"FIND THEM! MOVE THEM!"**: From Spain Poster and 2016 Propaganda poster
+- **"I did MY part, & found a Flag!"**: From Poster A
+- **"Manifest your Quantum Destiny with FLAGS"**: From Poster A
+- **5th dimensional Ley facet**: From Poster A
+- **La Societe du Troisieme Etage**: The Third Floor Society, from multiple posters
+- **"IF FOUND PLEASE LOSE / IF LOST RETURN TO TEMPLE"**: From FLAG SCHEMATICS
+
+### Completion Status: BUILT
+- **Folder**: `flaghack8/`
+- **Files**: 6 source modules + index.html
+- **Architecture**: Three.js ES modules + importmap
+- **Core Systems**: FOOP spawning (5 types), flag fix/align/pickup/place, Ley facet alignment, ley lines between aligned flags, pentagram detection, 4 Vexillomancer AI types, Quantum Destiny meter (6 levels), wave system with day/night, playa world with camps/structures/Effigy, recruitment system
+
+### Post-Build FLAG_DOCS Review
+- **Poster B - Unsigned.jpg**: Not yet reviewed
+- **FLAGISTAN AWAITS 2.png**: Not yet reviewed
+- **2016 Propoganda poster - unsigned.jpg**: Not yet reviewed (variant of signed version)
+- **LOGOS/**: Directory not yet reviewed
+- **Art Assets/**: Directory not yet reviewed
+
+### New Lore Discovered
+- **FOOP (Flags Out Of Place)**: Central concept - flags misaligned with 5th dimensional Ley facets
+- **Ian T.M. Elmore**: Lead Vexillomancer of the Geomantic Survey Committee
+- **"Manifest your Quantum Destiny"**: Quantum destiny as a spiritual/gameplay concept
+- **FLAG SCHEMATICS**: Detailed flag construction from Geomantic Survey Committee, "TOP SECRET" classification
+- **Address sticker protocol**: "IF FOUND PLEASE LOSE / IF LOST RETURN TO TEMPLE"
+
+### Next Sequel Seed: FLAGHACK 9
+- To be determined after reviewing remaining FLAG_DOCS (Poster B, FLAGISTAN AWAITS 2, LOGOS/, Art Assets/)
