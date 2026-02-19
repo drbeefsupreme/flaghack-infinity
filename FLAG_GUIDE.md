@@ -492,8 +492,63 @@
 - **Reverse Time Piracy**: Operating on the future (skeptics call it "causality")
 
 ### Next Sequel Seed: FLAGHACK 12
-- Dating sim / visual novel genre shift
-- Egregore (collective consciousness) as character or mechanic
-- "Forbidden Knowledge" tiered progression
-- "Advanced Knowledge" / "More Advanced Knowledge" / "Even More Advanced Knowledge" as unlock tiers
-- Open world exploration of Flagistan with NPC relationships
+- Dating sim at Mega Harvard with Advanced Knowledge progression
+- Schismmancers as characters (memetic soldiers)
+- Dr. Beef Supreme as NPC
+
+---
+
+## FLAGHACK 12: ADVANCED KNOWLEDGE
+
+### Concept
+- **Genre**: Dating Sim / Visual Novel
+- **Theme**: Enroll at Mega Harvard's Institute for Advanced Levels. Build relationships with 4 characters while progressing through 5 stages of Advanced Knowledge (Enrollment → Forgetting → Advanced Learning → Reintegration → Advancing Out of Control)
+- **Key Innovation**: 4 romanceable characters (Signifier, Schismmancer, Reformed Hippie, Dr. Beef Supreme), 6 locations with 3D backgrounds, dialogue trees with affection + AK gain, day/action management (30 days, 3 actions/day), characters rotate through locations
+- **Addictiveness Hooks**: Character relationships (social), dialogue discovery (mystery), AK progression (unlock), multiple endings, day planning optimization
+
+### What improves over FH11
+- Genre shift to dating sim/visual novel adds narrative depth and character investment
+- 4 distinct characters with personalities, likes/dislikes, and multi-stage dialogues
+- 6 Three.js location backgrounds (Quad, Library, Lab, Grove, Office, Effigy)
+- Branching dialogue with affection and AK consequences
+- Day/action resource management creates strategic planning
+- AK progression visually transforms the world (fog, colors deepen)
+- Multiple endings (romance per character, time-out ending)
+
+### Lore Integration
+- **Advanced Knowledge**: Founded by Dr. Beef Supreme at Mega Harvard (from wiki)
+- **3 Stages**: Forget → Learn the unteachable → Reintegrate (from wiki)
+- **"Human language can only program your mind to think the thoughts of others"**: Core AK tenet
+- **Schismmancers**: "Memetic soldiers deployed by ultracounterintelligence agencies, wielding antimemes" (from wiki)
+- **Signifiers**: Flag-bearers who channel the will of the Crystal
+- **"Advancing out of control"**: Final AK stage (from wiki)
+- **Mega Harvard**: Institute for Advanced Levels
+- **Hippie reform**: A former flag-thief's redemption arc
+- **Dr. Beef Supreme**: Named in wiki as founder of Advanced Knowledge
+- **Antimemes**: Ideas that fight against being known (from Schismmancer wiki)
+- **Effigy**: Ritual center location
+
+### Completion Status: BUILT
+- **Folder**: `flaghack12/`
+- **Files**: 4 source modules + index.html (1198 lines total)
+- **Architecture**: Three.js ES modules + importmap
+- **Core Systems**: 4 characters with dialogue trees, 6 3D locations, affection tracking (6 levels), AK progression (5 stages), day/action management, character location rotation, dialogue choices with consequences, visual world transformation, multiple endings, relationship summaries
+
+### Alch3my Wiki Fetches
+- **Advanced Knowledge**: 3-stage process (Forget/Learn/Reintegrate), Dr. Beef Supreme, Mega Harvard, "entirely different set of facts", "advancing out of control"
+- **Schismmancer**: Memetic soldiers, antimemes, deployed by Vexillians in late 2030s, "nuclear grade memetic weaponry"
+
+### New Lore Discovered
+- **Advanced Knowledge**: Entirely new philosophy from "different set of facts"
+- **Dr. Beef Supreme**: Proposed AK in 2024 at Mega Harvard's Institute for Advanced Levels
+- **Mega Harvard LLC**: Has an Institute for Advanced Levels
+- **Schismmancers**: First deployed by Vexillians in late 2030s
+- **Antimemes**: Ideas that fight against being known, weapon of Schismmancers
+- **"Advancing out of control"**: The goal of Advanced Knowledge
+
+### Next Sequel Seed: FLAGHACK 13
+- Racing / endless runner genre shift
+- "Forbidden Knowledge" as secret tier beyond Advanced Knowledge
+- "Egregore" (collective consciousness) as emergent AI opponent
+- More Advanced Knowledge / Even More Advanced Knowledge tiers
+- Time Piracy applied to racing (time manipulation power-ups)
