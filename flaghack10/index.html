@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLAGHACK 10: CONGRESS OF THE FLAGS</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0612; overflow: hidden; font-family: 'Courier New', monospace; cursor: default; color: #ccaa88; }
+canvas { display: block; }
+
+/* Title Screen */
+#title-screen {
+    position: fixed; inset: 0; z-index: 100;
+    background: radial-gradient(ellipse at center, #1a0a2a 0%, #0a0612 60%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 1s;
+}
+#title-screen .pre { font-size: 0.7em; color: #555; letter-spacing: 0.3em; margin-bottom: 0.5em; text-transform: uppercase; }
+#title-screen h1 {
+    font-size: 2.6em; color: #ffd700;
+    text-shadow: 0 0 40px #ffd700, 0 0 80px #aa8800;
+    letter-spacing: 0.15em; margin-bottom: 0.1em;
+}
+#title-screen h2 {
+    font-size: 1.3em; color: #cc9944; letter-spacing: 0.2em;
+    text-shadow: 0 0 20px #aa6600; margin-bottom: 0.3em;
+}
+#title-screen .subtitle {
+    font-size: 0.8em; color: #886633; letter-spacing: 0.12em; margin-bottom: 1.5em; font-style: italic;
+}
+#title-screen .lore {
+    max-width: 480px; text-align: center; color: #665544; font-size: 0.72em;
+    line-height: 1.6; margin-bottom: 2em; padding: 0 1em;
+}
+#start-btn {
+    background: none; border: 1px solid #ffd700; color: #ffd700;
+    padding: 0.7em 2.2em; font-family: inherit; font-size: 1em;
+    letter-spacing: 0.2em; cursor: pointer; transition: all 0.3s;
+}
+#start-btn:hover { background: #ffd70022; box-shadow: 0 0 20px #ffd70044; }
+#title-screen .controls {
+    margin-top: 1.2em; color: #444; font-size: 0.6em; line-height: 1.8;
+}
+
+/* Game UI */
+#game-ui { display: none; height: 100vh; }
+#scene-container { width: 100%; height: 40vh; }
+
+/* Battle Info Bar */
+#battle-info {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 15px; background: #0a0612ee;
+    border-bottom: 1px solid #332244;
+}
+.combatant {
+    display: flex; flex-direction: column; gap: 2px;
+}
+.combatant-name { font-size: 0.75em; color: #886644; }
+.combatant-hp { font-size: 0.9em; color: #ffd700; font-weight: bold; }
+.combatant-shield { font-size: 0.7em; color: #88ccff; }
+.combatant-flagic { font-size: 0.7em; color: #66aa44; }
+#enemy-intent { font-size: 0.65em; color: #cc6644; }
+#phase-display { font-size: 0.7em; color: #9966cc; letter-spacing: 0.1em; }
+#rank-display { font-size: 0.6em; color: #555; }
+#deck-count, #discard-count { font-size: 0.6em; color: #555; }
+.info-center { text-align: center; }
+
+/* Battle Log */
+#battle-log {
+    height: 40px; overflow-y: auto; padding: 4px 15px;
+    background: #0a0612; border-bottom: 1px solid #1a1a2a;
+    font-size: 0.65em; color: #886644;
+}
+.log-entry { padding: 1px 0; }
+
+/* Hand */
+#hand-area {
+    display: flex; align-items: flex-end; justify-content: center;
+    padding: 8px 10px; gap: 2px; min-height: 160px;
+    background: linear-gradient(0deg, #0a0612 0%, #0a061200 100%);
+    flex-wrap: wrap;
+}
+.card {
+    width: 110px; min-height: 140px; padding: 6px;
+    background: #1a1a2a; border: 1px solid #444; border-radius: 4px;
+    cursor: pointer; transition: all 0.2s; position: relative;
+    display: flex; flex-direction: column; gap: 3px;
+}
+.card:hover { transform: translateY(-8px); box-shadow: 0 4px 16px #ffd70033; }
+.card.unplayable { opacity: 0.45; cursor: not-allowed; }
+.card.unplayable:hover { transform: none; box-shadow: none; }
+.card-cost {
+    position: absolute; top: 4px; right: 4px;
+    background: #332244; color: #66aa44; font-size: 0.8em; font-weight: bold;
+    width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+}
+.card-name { font-size: 0.65em; font-weight: bold; padding-right: 22px; }
+.card-stats { font-size: 0.6em; color: #aaa; }
+.card-dmg { color: #ff6644; }
+.card-heal { color: #66cc44; }
+.card-shield { color: #6688ff; }
+.card-draw { color: #ffd700; }
+.card-desc { font-size: 0.55em; color: #666; font-style: italic; line-height: 1.3; flex: 1; }
+.card-rarity { font-size: 0.5em; text-transform: uppercase; letter-spacing: 0.1em; }
+.rarity-common { color: #666; }
+.rarity-rare { color: #4488ff; }
+.rarity-epic { color: #9944cc; }
+.rarity-legendary { color: #ffd700; }
+
+/* Action buttons */
+.action-btn, #end-turn-btn {
+    background: none; border: 1px solid #ffd700; color: #ffd700;
+    padding: 6px 20px; font-family: inherit; font-size: 0.8em;
+    letter-spacing: 0.15em; cursor: pointer; transition: all 0.2s;
+}
+.action-btn:hover, #end-turn-btn:hover { background: #ffd70022; }
+#end-turn-btn { margin-left: 10px; }
+#hand-controls {
+    display: flex; align-items: center; justify-content: center;
+    padding: 4px; gap: 10px;
+}
+
+/* Reward panel */
+#reward-panel {
+    position: fixed; inset: 0; z-index: 60;
+    background: #0a0612dd; display: none;
+    flex-direction: column; align-items: center; justify-content: center;
+}
+#reward-cards h3 { color: #ffd700; font-size: 1.2em; margin-bottom: 1em; text-align: center; }
+.reward-options { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 1em; }
+.reward-card {
+    width: 140px; min-height: 120px; padding: 10px;
+    background: #1a1a2a; border: 1px solid #444; border-radius: 4px;
+    cursor: pointer; transition: all 0.2s;
+}
+.reward-card:hover { transform: translateY(-5px); box-shadow: 0 4px 16px #ffd70044; border-color: #ffd700; }
+.reward-card .card-name { font-size: 0.75em; font-weight: bold; margin-bottom: 4px; }
+.reward-card .card-desc { font-size: 0.6em; color: #666; font-style: italic; }
+.reward-card .card-cost {
+    position: static; display: inline-block; background: #332244; color: #66aa44;
+    font-size: 0.7em; font-weight: bold; width: 18px; height: 18px;
+    text-align: center; line-height: 18px; border-radius: 50%; margin-bottom: 4px;
+}
+.reward-card .card-rarity { font-size: 0.55em; margin-top: 4px; }
+
+/* Defeat panel */
+#defeat-panel {
+    position: fixed; inset: 0; z-index: 60;
+    background: #0a0612dd; display: none;
+    flex-direction: column; align-items: center; justify-content: center;
+}
+.defeat-content { text-align: center; }
+.defeat-content h2 { color: #cc3333; font-size: 1.5em; margin-bottom: 0.5em; }
+.defeat-content p { color: #886644; font-size: 0.8em; margin-bottom: 0.3em; }
+.defeat-content .salute { color: #ffd700; font-size: 1.2em; margin: 1em 0; }
+.defeat-content button { margin-top: 0.5em; }
+
+/* Victory overlay */
+#victory-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: radial-gradient(ellipse at center, #2a1a00cc 0%, #0a0612ee 100%);
+    display: flex; align-items: center; justify-content: center;
+}
+.victory-content { text-align: center; }
+.victory-symbol { font-size: 3em; color: #ffd700; text-shadow: 0 0 40px #ffd700; margin-bottom: 0.3em; }
+.victory-content h1 { color: #ffd700; font-size: 1.6em; letter-spacing: 0.15em; margin-bottom: 0.2em; }
+.victory-content h2 { color: #9966cc; font-size: 0.9em; font-style: italic; margin-bottom: 1em; }
+.victory-content p { color: #886644; font-size: 0.75em; margin-bottom: 0.2em; }
+.victory-content .salute { color: #ffd700; font-size: 1.3em; margin: 0.8em 0; }
+
+/* Quote */
+#battle-quote {
+    position: fixed; top: 42vh; left: 50%; transform: translateX(-50%); z-index: 5;
+    color: #886644; font-size: 0.65em; font-style: italic;
+    opacity: 0; transition: opacity 1s; white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<div id="title-screen">
+    <div class="pre">The Flaghack Saga — Chapter X</div>
+    <h1>FLAGHACK 10</h1>
+    <h2>CONGRESS OF THE FLAGS</h2>
+    <div class="subtitle">"A Card Battler of Vexillomantic Diplomacy"</div>
+    <div class="lore">
+        The Congress of the Flags has convened. Four rival factions
+        challenge your authority as Vexillomancer delegate.
+        Build your deck with flag spells, ley blasts, and sacred pentagrams.
+        Defeat the Hippie Delegation, the Ban Enforcers, the Schismmancers,
+        and the dread Anti-Flag to achieve Vexillisainthood.<br><br>
+        <em>"Vexillisainthood must be recognized in others to attain."</em>
+    </div>
+    <button id="start-btn">CONVENE THE CONGRESS</button>
+    <div class="controls">
+        Click cards to play them &nbsp;|&nbsp; End Turn when done<br>
+        Win battles to earn new cards &nbsp;|&nbsp; Defeat all factions to ascend
+    </div>
+</div>
+
+<div id="game-ui">
+    <div id="scene-container"></div>
+
+    <div id="battle-info">
+        <div class="combatant">
+            <div class="combatant-name">Vexillomancer</div>
+            <div id="player-hp" class="combatant-hp">HP: 40/40</div>
+            <div id="player-shield" class="combatant-shield"></div>
+            <div id="player-flagic" class="combatant-flagic">Flagic: 3/3</div>
+            <div id="deck-count">Deck: 10</div>
+            <div id="discard-count">Discard: 0</div>
+        </div>
+        <div class="info-center">
+            <div id="phase-display">Turn 1 — Your Turn</div>
+            <div id="rank-display">Rank: Initiate | Battles Won: 0</div>
+        </div>
+        <div class="combatant" style="text-align:right">
+            <div id="enemy-name" class="combatant-name">Opponent</div>
+            <div id="enemy-hp" class="combatant-hp">HP: 30/30</div>
+            <div id="enemy-shield" class="combatant-shield"></div>
+            <div id="enemy-intent"></div>
+        </div>
+    </div>
+
+    <div id="battle-log"></div>
+
+    <div id="hand-area">
+        <div id="hand"></div>
+    </div>
+    <div id="hand-controls">
+        <button id="end-turn-btn">END TURN</button>
+    </div>
+</div>
+
+<div id="reward-panel"><div id="reward-cards"></div></div>
+<div id="defeat-panel"></div>
+<div id="battle-quote"></div>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://esm.sh/three@0.162.0"
+    }
+}
+</script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

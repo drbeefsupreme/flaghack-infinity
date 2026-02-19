@@ -381,8 +381,65 @@
 - **"Every idea is an idol, if not reborn in living experience"**: Hamann quote, thematic
 
 ### Next Sequel Seed: FLAGHACK 10
-- Card Battler or Dating Sim genre shift
-- Explore "Flags as a voluntary virus" — infection/spreading mechanic
-- The Vexilloramanomicon could contain card spells
-- "Every idea is an idol" — corruption/purification mechanic
-- Consider rhythm game tied to flag placement cadence
+- Card Battler with Congress of the Flags theme
+- Vexillisainthood as ultimate achievement (from wiki)
+- Faction-based opponents from accumulated lore
+
+---
+
+## FLAGHACK 10: CONGRESS OF THE FLAGS
+
+### Concept
+- **Genre**: Card Battler / Deck Builder
+- **Theme**: The Congress of the Flags has convened. As a Vexillomancer delegate, battle four rival factions with flag-themed spell cards. Build your deck, climb Congress ranks, achieve Vexillisainthood.
+- **Key Innovation**: 16 unique flag-themed cards with damage/heal/shield/draw/special effects. 4 faction opponents with unique decks and escalating difficulty. Deck building via post-battle card rewards. Congress rank progression.
+- **Addictiveness Hooks**: Deck optimization (collection), faction progression (near-miss), card discovery (mystery), Vexillisainthood chase (prestige), risk/reward card play
+
+### What improves over FH9
+- Genre shift to card battler adds strategic depth and replayability
+- 16 cards with 4 rarities (common/rare/epic/legendary) and 5 special effects (burn/poison/skip/steal/none)
+- 4 factions with distinct personalities, strategies, and escalating HP
+- Deck building between battles — choose reward cards to strengthen deck
+- 3D pentagram arena with animated combatants and particle effects
+- Congress rank system (Initiate → Delegate → Orator → Legislator → High Delegate → Vexillisaint)
+- Flagic as card resource with growth per victory
+
+### Lore Integration
+- **Congress of the Flags**: Real event from Alchemy 2017, "attended by whoever showed up"
+- **Vexillisainthood**: From Congress wiki - "must be recognized in others to attain"
+- **Flag Commandments**: Two laws from the Congress (no entering tents for flags, mediation disputes)
+- **Hippie Delegation**: Classic antagonist faction
+- **The Ban Enforcers**: From FH6 lore (Noospheric Munitions Act)
+- **Schismmancers**: From wiki - renegade Vexillomancers
+- **The Anti-Flag**: From FH7 lore - negation of the Signifier
+- **Omega Configuration**: Legendary card (from wiki)
+- **Chronoschism**: Epic card - null-time skip mechanic
+- **Effigy Flame**: Rare card - burn DOT
+- **Voluntary Virus**: Rare card - poison DOT (from Talk:Survey_Flags)
+- **Vexilloramanomicon**: Referenced in battle quotes
+- **Geomantica**: Rare card - draw 3
+
+### Completion Status: BUILT
+- **Folder**: `flaghack10/`
+- **Files**: 4 source modules + index.html (1182 lines total)
+- **Architecture**: Three.js ES modules + importmap
+- **Core Systems**: 16 card types, 4 faction opponents, deck shuffling/draw/discard, Flagic cost/turn system, 5 special effects (burn/poison/skip/steal), enemy AI (prioritizes expensive cards), 3D pentagram arena with animated figures, Congress rank progression (6 ranks), post-battle card rewards, defeat/restart, Vexillisainthood victory
+
+### Alch3my Wiki Fetches
+- **Congress of the Flags**: Event at Alchemy 2017, Flag Commandments (no tent searching, mediation), Vexillisainthood tradition (reciprocal, non-hierarchical)
+- **Order of the Golden FLAG**: Secret society, founding part of Hermetic Order of the Golden Dawn
+- **Special:AllPages**: ~170 pages including Schismmancer, Time Piracy, Egregore, Congress of the Flags, Forbidden Knowledge, 2040 Election Platform
+
+### New Lore Discovered
+- **Congress of the Flags**: Real vexillomantic summit, open attendance
+- **Flag Commandments**: No entering tents for flags; mediation for disputes
+- **Vexillisainthood**: Must be "recognized in others to attain" — reciprocal divinity
+- **Order of the Golden FLAG**: Secret society linked to Golden Dawn
+- **Schismmancers**: Renegade Vexillomancers (from wiki page list)
+
+### Next Sequel Seed: FLAGHACK 11
+- Rhythm game or dating sim genre shift
+- "Time Piracy" from wiki as time-manipulation mechanic
+- "Forbidden Knowledge" as secret unlockable content
+- Egregore (collective consciousness) as multiplayer-like mechanic
+- Consider open-world exploration of Flagistan
