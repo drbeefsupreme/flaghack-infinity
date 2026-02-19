@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLAGHACK 7: TRIUMPH OF FLAGS</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #020208; overflow: hidden; font-family: 'Courier New', monospace; cursor: crosshair; }
+canvas { display: block; }
+
+#title-screen {
+    position: fixed; inset: 0; z-index: 100;
+    background: radial-gradient(ellipse at center, #1a1000 0%, #020208 60%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 1.5s;
+}
+#title-screen .pre { font-size: 0.8em; color: #555; letter-spacing: 0.3em; margin-bottom: 0.5em; }
+#title-screen h1 {
+    font-size: 3em; color: #ffd700;
+    text-shadow: 0 0 40px #ffd700, 0 0 80px #aa8800, 0 0 120px #664400;
+    letter-spacing: 0.15em; margin-bottom: 0.1em;
+}
+#title-screen h2 { font-size: 2em; color: #ff8844; letter-spacing: 0.2em; text-shadow: 0 0 20px #ff4400; margin-bottom: 1.5em; }
+#title-screen .lore { font-size: 0.75em; color: #444; max-width: 400px; text-align: center; font-style: italic; line-height: 1.6; }
+#title-screen .start-prompt { font-size: 1.2em; color: #ffd700; animation: pulse 2s infinite; margin-top: 2em; }
+@keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+#hud {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: none; padding: 8px 15px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+    pointer-events: none;
+}
+#hud-row { display: flex; justify-content: space-between; align-items: center; }
+.hud-item { display: flex; gap: 4px; align-items: baseline; }
+.hud-label { font-size: 9px; color: #555; text-transform: uppercase; }
+.hud-value { font-size: 16px; font-weight: bold; }
+
+#boss-hp-bar {
+    position: fixed; top: 40px; left: 50%; transform: translateX(-50%);
+    width: 400px; max-width: 80vw; z-index: 10; display: none;
+    pointer-events: none; text-align: center;
+}
+#boss-name { font-size: 14px; color: #ff4444; letter-spacing: 0.2em; margin-bottom: 4px; }
+#boss-hp-bg { width: 100%; height: 8px; background: #220000; border-radius: 4px; overflow: hidden; }
+#boss-hp-fill { width: 100%; height: 100%; background: linear-gradient(to right, #ff2222, #ff4444); transition: width 0.1s; border-radius: 4px; }
+#boss-phase { font-size: 10px; color: #884444; margin-top: 2px; }
+
+#notification {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 30; display: none; padding: 12px 30px;
+    font-size: 2em; color: #ffd700; text-shadow: 0 0 30px #ffd700;
+    pointer-events: none; text-align: center; transition: opacity 0.5s;
+}
+
+#game-over {
+    position: fixed; inset: 0; z-index: 50; display: none;
+    background: rgba(0,0,0,0.95);
+    flex-direction: column; align-items: center; justify-content: center;
+}
+#game-over h1 { font-size: 3em; margin-bottom: 0.3em; }
+#game-over .stats { font-size: 1em; color: #ffd700; line-height: 1.8; text-align: center; margin-bottom: 1.5em; }
+#game-over .restart { font-size: 1.1em; color: #ffd700; animation: pulse 2s infinite; }
+</style>
+</head>
+<body>
+
+<div id="title-screen">
+    <div class="pre">THE FLAGHACK SERIES CULMINATES</div>
+    <h1>TRIUMPH OF FLAGS</h1>
+    <h2>FLAGHACK VII</h2>
+    <div class="lore">
+        "And the Flag Angel rose above the writhing chaos,<br>
+        and each Flag was every Flag,<br>
+        and the Sign and Signifier became One."
+    </div>
+    <div class="start-prompt">CLICK TO ASCEND</div>
+</div>
+
+<div id="hud">
+    <div id="hud-row">
+        <div class="hud-item"><span class="hud-label">HP </span><span class="hud-value" id="hud-hp" style="color:#44ff44">100</span></div>
+        <div class="hud-item"><span class="hud-label">Flagic </span><span class="hud-value" id="hud-flagic" style="color:#cc88ff">100</span></div>
+        <div class="hud-item"><span class="hud-label">Boss </span><span class="hud-value" id="hud-boss" style="color:#ff4444">1/5</span></div>
+        <div class="hud-item"><span class="hud-label">Score </span><span class="hud-value" id="hud-score" style="color:#ffd700">0</span></div>
+    </div>
+</div>
+
+<div id="boss-hp-bar">
+    <div id="boss-name">BOSS NAME</div>
+    <div id="boss-hp-bg"><div id="boss-hp-fill"></div></div>
+    <div id="boss-phase">Phase 1</div>
+</div>
+
+<div id="notification"></div>
+
+<div id="game-over">
+    <h1 id="end-title"></h1>
+    <div class="stats" id="end-stats"></div>
+    <div class="restart">CLICK TO TRY AGAIN</div>
+</div>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://esm.sh/three@0.170.0",
+        "three/addons/": "https://esm.sh/three@0.170.0/examples/jsm/"
+    }
+}
+</script>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

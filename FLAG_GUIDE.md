@@ -216,8 +216,57 @@
 ### Post-Build FLAG_DOCS Review
 - **Triumph of Flags over Covid.jpg**: Epic angelic figure wielding yellow flag, standing atop defeated virus monster. "THE TRIUMPH OF FLAGS." INSPIRATION FOR FH7: Boss-rush action game where Vexillomancer-angel battles cosmic threats with flag powers. Triumphant/epic tone.
 
-### Next Sequel Seed: FLAGHACK 7
-- **Concept**: "FLAGHACK 7: TRIUMPH OF FLAGS" - An epic boss-rush bullet-hell where the Vexillomancer ascends as a Flag Angel, battling cosmic manifestations of anti-Flag forces. Each boss represents a different threat to flags (Disease, Censorship, Entropy, Hippie King, Null-time). Inspired by the "Triumph of Flags over Covid" artwork.
-- **Genre Shift**: Boss-rush bullet hell (from survival builder)
-- **Key Innovation**: Flag-based bullet patterns, boss phases tied to flag theology, ascension mechanic
-- **Addictiveness Hooks**: Boss mastery (flow state), pattern memorization (near-miss), power escalation (variable rewards), glory moments (climax design)
+---
+
+## FLAGHACK 7: TRIUMPH OF FLAGS
+
+### Concept
+- **Genre**: Boss-Rush Bullet Hell
+- **Theme**: The Vexillomancer ascends as a Flag Angel to battle five cosmic manifestations of anti-Flag forces in a sacred pentagram arena
+- **Key Innovation**: 5 unique boss phases with distinct bullet patterns, 3 special attacks (Flag Storm, Pentagram Blast, Ley Beam) costing Flagic, dodge with i-frames, no-hit bonus scoring
+- **Addictiveness Hooks**: Boss mastery (flow state), pattern memorization (near-miss), power escalation per phase, glory moments (climax design), no-hit bonus chase
+
+### What improves over FH6
+- Genre shift to boss-rush bullet hell adds intense action focus
+- 5 bosses with multi-phase AI and unique bullet patterns
+- Dodge mechanic with i-frames for skillful play
+- 3 special attacks with Flagic cost/reward tradeoff
+- Sacred pentagram arena with pillar flags
+- Score system with no-hit bonuses per boss
+- Phase transitions with visual feedback
+
+### Lore Integration
+- **Flag Angel**: Winged Vexillomancer with halo, golden robes, flag weapon held aloft
+- **THE STENCH**: Hippie King of Filth - green miasma, spreading cloud pattern
+- **THE CENSOR**: Enforcer of the Ban - red angular shield, barrier wall bullets
+- **THE ENTROPY**: Heat Death of Meaning - dissolving grey, spiral patterns
+- **NULL-TIME**: The Great Chronoschism - blue temporal rings, time-freeze bullet rings
+- **THE ANTI-FLAG**: Negation of the Signifier - purple void, chaos bullets + aimed bursts
+- **Pentagram Arena**: Sacred arena with pentagram inscriptions and 5 pillar flags
+
+### Completion Status: BUILT
+- **Folder**: `flaghack7/`
+- **Files**: 4 source modules + index.html
+- **Architecture**: Three.js ES modules + importmap
+- **Core Systems**: Flag Angel player (wings, halo, dodge), 5 bosses with multi-phase AI, bullet pattern system (aimed, spiral, ring, cloud, chaos, barrier), 3 special attacks (Flag Storm/Pentagram Blast/Ley Beam), particle effects, boss sequencing, scoring with no-hit bonus, HUD with boss HP bar
+
+### Post-Build FLAG_DOCS Review
+- **2024 Flag Poster.jpg**: Person holding two flags aloft, "FLAGS - The Flags Survey Experience art & FLAGS OF FLAGS ARE Art." Recursive flags-of-flags concept. La Societe du Troisieme Etage.
+- **FLAG SCHEMATICS (UPDATED) - TOP SECRET.jpg**: Detailed construction diagram by "Geomantic Survey Committee." Address sticker: "IF FOUND PLEASE LOSE / IF LOST RETURN TO TEMPLE." Confirms rectangular cloth on furring lumber.
+- **Spain Poster.jpg**: Lone figure kneeling in desert/playa with massive golden flag in wind. "FLAGS! FIND THEM! - MOVE THEM!" Dramatic, solitary devotion.
+- **2016 Propaganda poster.jpg**: Soviet-style propaganda art, masses behind flag bearer. "FIND THEM! MOVE THEM!" Ian T.M. Elmore, Lead Vexillomancer. Geomantic Survey Committee 2016.
+- **Poster A - Unsigned.jpg**: "I did MY part, & found a Flag!" Crystal hanging as pendulum. "Manifest your Quantum Destiny with FLAGS." Introduces FOOP (Flags Out Of Place) - flags found laying on ground, leaning on tents, not aligned with 5th dimensional Ley facets. Third Floor Society.
+
+### New Lore Discovered
+- **FOOP**: Flags Out Of Place - at any moment the burn is full of misaligned flags
+- **Ian T.M. Elmore**: Lead Vexillomancer
+- **Geomantic Survey Committee**: The organizational body behind flag operations
+- **"Manifest your Quantum Destiny with FLAGS"**: Quantum destiny concept
+- **"IF FOUND PLEASE LOSE / IF LOST RETURN TO TEMPLE"**: Flag instructions on address sticker
+- **5th dimensional Ley facet**: Flags must be aligned with higher-dimensional Ley facets
+
+### Next Sequel Seed: FLAGHACK 8
+- **Concept**: "FLAGHACK 8: THE GREAT SURVEY" - A real-time strategy / puzzle game inspired by the propaganda posters and FOOP concept. Lead the Geomantic Survey Committee to FIND and MOVE misaligned flags (FOOPs) across an expanding playa, align them with 5th-dimensional Ley facets, recruit Vexillomancers, and manifest Quantum Destiny. Soviet-propaganda-inspired recruitment mechanics.
+- **Genre Shift**: Real-time strategy / puzzle (from boss-rush)
+- **Key Innovation**: FOOP detection and realignment as core mechanic, 5th-dimensional Ley facet alignment, Geomantic Survey Committee management, propaganda/recruitment system
+- **Addictiveness Hooks**: Optimization puzzle (alignment perfection), territory expansion, recruitment cascade, FOOP discovery (collection), Quantum Destiny meter
