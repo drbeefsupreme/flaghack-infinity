@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLAGHACK 11: TIME PIRACY</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #050310; overflow: hidden; font-family: 'Courier New', monospace; cursor: default; color: #ccaa88; }
+canvas { display: block; position: fixed; inset: 0; z-index: 0; }
+
+/* Title Screen */
+#title-screen {
+    position: fixed; inset: 0; z-index: 100;
+    background: radial-gradient(ellipse at center, #100520 0%, #050310 60%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 1s;
+}
+#title-screen .pre { font-size: 0.7em; color: #555; letter-spacing: 0.3em; margin-bottom: 0.5em; text-transform: uppercase; }
+#title-screen h1 {
+    font-size: 2.6em; color: #ffd700;
+    text-shadow: 0 0 40px #ffd700, 0 0 80px #aa8800;
+    letter-spacing: 0.15em; margin-bottom: 0.1em;
+}
+#title-screen h2 {
+    font-size: 1.3em; color: #4488ff; letter-spacing: 0.2em;
+    text-shadow: 0 0 20px #4488ff; margin-bottom: 0.3em;
+}
+#title-screen .subtitle {
+    font-size: 0.8em; color: #886633; letter-spacing: 0.12em; margin-bottom: 1.5em; font-style: italic;
+}
+#title-screen .lore {
+    max-width: 480px; text-align: center; color: #665544; font-size: 0.72em;
+    line-height: 1.6; margin-bottom: 2em; padding: 0 1em;
+}
+#start-btn, .action-btn {
+    background: none; border: 1px solid #ffd700; color: #ffd700;
+    padding: 0.7em 2.2em; font-family: inherit; font-size: 1em;
+    letter-spacing: 0.2em; cursor: pointer; transition: all 0.3s;
+}
+#start-btn:hover, .action-btn:hover { background: #ffd70022; box-shadow: 0 0 20px #ffd70044; }
+#title-screen .controls {
+    margin-top: 1.2em; color: #444; font-size: 0.6em; line-height: 1.8;
+}
+
+/* HUD */
+#hud {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: none; padding: 8px 15px;
+    background: linear-gradient(180deg, #050310ee 0%, #05031000 100%);
+}
+.hud-row { display: flex; justify-content: space-between; align-items: center; }
+#hud-score { color: #ffd700; font-size: 1.1em; font-weight: bold; }
+#hud-combo { font-size: 0.9em; transition: color 0.3s; }
+#hud-thick { font-size: 0.75em; }
+#hud-crystals { font-size: 0.75em; color: #88ccff; }
+#hud-song { font-size: 0.7em; color: #555; }
+
+/* Lane labels at bottom */
+#lane-labels {
+    position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 10;
+    display: flex; gap: 50px; /* matches lane spacing visually */
+}
+.lane-label {
+    width: 35px; text-align: center; color: #ffd700; font-size: 0.8em;
+    font-weight: bold; text-shadow: 0 0 10px #ffd700;
+    opacity: 0.6;
+}
+
+/* Feedback text */
+#feedback {
+    position: fixed; top: 40%; left: 50%; transform: translateX(-50%); z-index: 15;
+    font-size: 1.5em; font-weight: bold; letter-spacing: 0.1em;
+    text-shadow: 0 0 20px currentColor;
+    transition: opacity 0.3s, transform 0.3s; opacity: 0;
+    pointer-events: none;
+}
+
+/* Song Select */
+#song-select {
+    position: fixed; inset: 0; z-index: 50;
+    background: #050310dd; display: none;
+    flex-direction: column; align-items: center; justify-content: center;
+    padding: 20px;
+}
+#song-select h2 {
+    color: #ffd700; font-size: 1.4em; letter-spacing: 0.2em;
+    text-shadow: 0 0 20px #ffd700; margin-bottom: 1em;
+}
+.song-list { display: flex; flex-direction: column; gap: 8px; max-width: 450px; width: 100%; }
+.song-item {
+    border: 1px solid #333; padding: 10px 15px; border-radius: 3px;
+    cursor: pointer; transition: all 0.2s;
+}
+.song-item:hover { border-color: #ffd700; background: #1a1a0a22; }
+.song-item.locked { opacity: 0.4; cursor: not-allowed; }
+.song-name { color: #ffd700; font-size: 0.9em; font-weight: bold; }
+.song-desc { color: #886644; font-size: 0.7em; font-style: italic; }
+.song-info { color: #555; font-size: 0.65em; margin-top: 2px; }
+.song-lock { color: #88ccff; font-size: 0.6em; margin-top: 2px; }
+.rank-display { color: #9966cc; font-size: 0.7em; margin-top: 1em; letter-spacing: 0.1em; }
+
+/* Results */
+.results { text-align: center; }
+.results h2 { color: #ffd700; font-size: 1.4em; margin-bottom: 0.5em; }
+.results-song { color: #886644; font-size: 0.9em; margin-bottom: 0.5em; }
+.results-score { color: #ffd700; font-size: 1.3em; font-weight: bold; margin-bottom: 0.3em; }
+.results-combo { color: #ffaa33; font-size: 0.85em; margin-bottom: 0.5em; }
+.results-grades { display: flex; gap: 15px; justify-content: center; margin-bottom: 0.5em; font-size: 0.7em; }
+.grade-perfect { color: #ffd700; }
+.grade-great { color: #ffaa33; }
+.grade-good { color: #888; }
+.grade-miss { color: #553333; }
+.results-crystals { color: #88ccff; font-size: 0.8em; margin-bottom: 0.5em; }
+.results-quote { color: #665544; font-size: 0.7em; font-style: italic; margin-bottom: 1em; }
+</style>
+</head>
+<body>
+
+<div id="title-screen">
+    <div class="pre">The Flaghack Saga — Chapter XI</div>
+    <h1>FLAGHACK 11</h1>
+    <h2>TIME PIRACY</h2>
+    <div class="subtitle">"Bootlegging reality to make it more real."</div>
+    <div class="lore">
+        Time Piracy is the process of stealing time, especially simultaneously.
+        Over 90% of real time originates from time piracy.
+        Flags are a known example of time piracy.<br><br>
+        Place flags to the rhythm. Build combos across all five ley lines
+        to form pentagrams. Accumulate Thick Time to crystallize
+        Time Crystals. Pirate your way through five songs of escalating
+        temporal density.<br><br>
+        <em>"Bootlegged time is more true than its source material."</em>
+    </div>
+    <button id="start-btn">PIRATE TIME</button>
+    <div class="controls">
+        A S D F G — Hit notes in each lane<br>
+        Hit flags, crystals, and effigies — Avoid hippies!<br>
+        All 5 lanes = Pentagram Bonus &nbsp;|&nbsp; Thick Time → Time Crystal
+    </div>
+</div>
+
+<div id="hud">
+    <div class="hud-row">
+        <span id="hud-score">Score: 0</span>
+        <span id="hud-combo"></span>
+        <span id="hud-thick">Thick Time: 0%</span>
+        <span id="hud-crystals"></span>
+        <span id="hud-song"></span>
+    </div>
+</div>
+
+<div id="lane-labels">
+    <div class="lane-label">A</div>
+    <div class="lane-label">S</div>
+    <div class="lane-label">D</div>
+    <div class="lane-label">F</div>
+    <div class="lane-label">G</div>
+</div>
+
+<div id="feedback"></div>
+<div id="song-select"></div>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://esm.sh/three@0.162.0"
+    }
+}
+</script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

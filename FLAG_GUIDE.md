@@ -438,8 +438,62 @@
 - **Schismmancers**: Renegade Vexillomancers (from wiki page list)
 
 ### Next Sequel Seed: FLAGHACK 11
-- Rhythm game or dating sim genre shift
-- "Time Piracy" from wiki as time-manipulation mechanic
-- "Forbidden Knowledge" as secret unlockable content
-- Egregore (collective consciousness) as multiplayer-like mechanic
-- Consider open-world exploration of Flagistan
+- Rhythm game with Time Piracy theme
+- "Thick Time" and "Time Crystallization" as reward mechanics
+- 5 lanes = pentagram ley lines
+
+---
+
+## FLAGHACK 11: TIME PIRACY
+
+### Concept
+- **Genre**: Rhythm Game
+- **Theme**: Time Piracy — flag placement creates temporal rhythms. Hit notes on 5 ley line lanes to the beat, form pentagrams across all lanes, accumulate Thick Time to crystallize Time Crystals
+- **Key Innovation**: Thick Time meter fills with perfect/great hits, crystallizes into Time Crystals at threshold (500 bonus points). Pentagram bonus for hitting all 5 lanes. Procedural beat generation + Web Audio API percussion. Hippie notes must be AVOIDED (penalty for hitting them)
+- **Addictiveness Hooks**: Rhythm flow state, combo chasing, score perfection, song unlocking (gated by Time Crystals), Thick Time → Crystal crystallization dopamine
+
+### What improves over FH10
+- Genre shift to rhythm game adds flow-state engagement and muscle memory
+- Procedural audio (Web Audio API) — no external audio files needed
+- 5 songs with escalating BPM and difficulty (100-180 BPM)
+- 4 note types (flag, crystal, effigy, hippie-avoid) with distinct 3D visuals and sounds
+- Thick Time / Time Crystal mechanic creates secondary reward loop
+- Pentagram bonus across all 5 lanes creates strategic hit patterns
+- 6-tier pirate rank progression
+- Timing windows (Perfect/Great/Good/Miss) with visual feedback
+
+### Lore Integration
+- **Time Piracy**: "The process of stealing time, especially simultaneously" (from wiki)
+- **Thick Time**: "Rapid and exponential inflation of time" leading to crystallization
+- **Time Crystals**: Formed from thick time, gatekeep song unlocks
+- **"Over 90% of real time originates from time piracy"**: Song description
+- **"Bootlegged time is more true than its source material"**: Subtitle quote
+- **Flags as time piracy**: "Flags are a known example of time piracy" (from wiki)
+- **The Great Chronoschism**: Song 3 theme (null-time)
+- **5 ley line lanes**: Pentagram configuration mapped to rhythm lanes
+- **Hippies**: Avoid-notes (green dodecahedrons)
+- **Effigy**: High-value note type
+
+### Completion Status: BUILT
+- **Folder**: `flaghack11/`
+- **Files**: 4 source modules + index.html (1068 lines total)
+- **Architecture**: Three.js ES modules + importmap + Web Audio API
+- **Core Systems**: 5-lane rhythm game, procedural note chart generation, Web Audio percussion (kick/hihat/chime/crystal/effigy sounds), 4 timing windows, combo system, Thick Time meter + crystallization, pentagram bonus, 5 songs (100-180 BPM), song select/unlock, results screen, 6 pirate ranks, 3D lane visuals with particles and decorative flags
+
+### Alch3my Wiki Fetches
+- **Time Piracy**: Stealing/bootlegging time, thick time, time crystallization, 90% of real time is bootlegged, flags as time piracy example
+- **Forbidden Knowledge**: Gatekept behind comprehension/subscription tier — "HALT!" (used as design inspiration for locked songs)
+
+### New Lore Discovered
+- **Time Piracy**: Process of stealing/bootlegging time to "over-stuff reality"
+- **Thick Time**: Time inflated through piracy, precursor to crystallization
+- **"Bootlegged time is more true than its source material"**: Temporal recursion
+- **"The past's capacity to hold time remains unknown"**: Philosophical depth
+- **Reverse Time Piracy**: Operating on the future (skeptics call it "causality")
+
+### Next Sequel Seed: FLAGHACK 12
+- Dating sim / visual novel genre shift
+- Egregore (collective consciousness) as character or mechanic
+- "Forbidden Knowledge" tiered progression
+- "Advanced Knowledge" / "More Advanced Knowledge" / "Even More Advanced Knowledge" as unlock tiers
+- Open world exploration of Flagistan with NPC relationships
