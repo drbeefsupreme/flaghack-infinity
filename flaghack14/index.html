@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLAGHACK 14: THE FLAG COMMANDMENTS</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0612; overflow: hidden; font-family: 'Courier New', monospace; cursor: default; color: #ccaa88; }
+canvas { display: block; }
+
+#title-screen {
+    position: fixed; inset: 0; z-index: 100;
+    background: radial-gradient(ellipse at center, #1a0a2a 0%, #0a0612 60%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 1s;
+}
+#title-screen .pre { font-size: 0.7em; color: #555; letter-spacing: 0.3em; margin-bottom: 0.5em; text-transform: uppercase; }
+#title-screen h1 {
+    font-size: 2.6em; color: #ffd700;
+    text-shadow: 0 0 40px #ffd700, 0 0 80px #aa8800;
+    letter-spacing: 0.15em; margin-bottom: 0.1em;
+}
+#title-screen h2 {
+    font-size: 1.3em; color: #cc9944; letter-spacing: 0.2em;
+    text-shadow: 0 0 20px #aa6600; margin-bottom: 0.3em;
+}
+#title-screen .subtitle { font-size: 0.8em; color: #886633; font-style: italic; margin-bottom: 1.5em; }
+#title-screen .lore {
+    max-width: 480px; text-align: center; color: #665544; font-size: 0.72em;
+    line-height: 1.6; margin-bottom: 2em; padding: 0 1em;
+}
+#start-btn, .action-btn {
+    background: none; border: 1px solid #ffd700; color: #ffd700;
+    padding: 0.6em 1.8em; font-family: inherit; font-size: 0.85em;
+    letter-spacing: 0.15em; cursor: pointer; transition: all 0.3s;
+}
+#start-btn:hover, .action-btn:hover { background: #ffd70022; }
+#title-screen .controls { margin-top: 1.2em; color: #444; font-size: 0.6em; line-height: 1.8; }
+
+#game-ui { display: none; }
+#sidebar {
+    position: fixed; right: 0; top: 0; bottom: 0; width: 220px; z-index: 10;
+    background: #0a0612ee; border-left: 1px solid #222; padding: 10px;
+    display: flex; flex-direction: column; gap: 8px; overflow-y: auto;
+}
+#mission-info { color: #ffd700; font-size: 0.75em; font-weight: bold; }
+#turn-info { color: #9966cc; font-size: 0.7em; }
+#unit-list { display: flex; flex-direction: column; gap: 3px; }
+.unit-entry { font-size: 0.6em; padding: 3px 6px; border-left: 2px solid #ffd700; }
+#battle-log {
+    flex: 1; overflow-y: auto; font-size: 0.6em; color: #886644;
+    border-top: 1px solid #222; padding-top: 5px; margin-top: 5px;
+}
+#end-turn-btn { width: 100%; }
+#action-menu {
+    position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 20;
+    display: none; gap: 8px;
+}
+#result-panel {
+    position: fixed; inset: 0; z-index: 50; background: #0a0612dd;
+    display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+}
+#result-panel h2 { color: #ffd700; font-size: 1.5em; margin-bottom: 0.5em; }
+#result-panel p { color: #886644; font-size: 0.8em; margin-bottom: 0.3em; }
+#result-panel .quote { font-style: italic; color: #665544; }
+#result-panel .salute { color: #ffd700; font-size: 1.2em; margin: 0.5em 0; }
+#result-panel .victory-symbol { font-size: 3em; color: #ffd700; text-shadow: 0 0 40px #ffd700; }
+#result-panel button { margin-top: 1em; }
+</style>
+</head>
+<body>
+
+<div id="title-screen">
+    <div class="pre">The Flaghack Saga — Chapter XIV</div>
+    <h1>FLAGHACK 14</h1>
+    <h2>THE FLAG COMMANDMENTS</h2>
+    <div class="subtitle">"Turn-Based Vexillomantic Tactics"</div>
+    <div class="lore">
+        The Congress of the Flags established two commandments:
+        "No entering tents for flags" and "When two dispute, a third may mediate."<br><br>
+        Now the Ban Enforcers and Schismmancers threaten the playa.
+        Command a squad of Vexillomancers, Signifiers, and Guardians.
+        Place flags for tactical buffs. Form pentagrams to devastate enemies.
+        Complete 4 missions to fulfill the Flag Commandments.<br><br>
+        <em>"Nuclear grade memetic weaponry."</em>
+    </div>
+    <button id="start-btn">DEPLOY SQUAD</button>
+    <div class="controls">
+        Click units to select &nbsp;|&nbsp; Click tiles to move<br>
+        Attack, use abilities, or wait &nbsp;|&nbsp; Place flags for buffs<br>
+        5 flags = Pentagram AOE &nbsp;|&nbsp; End Turn when done
+    </div>
+</div>
+
+<div id="game-ui">
+    <div id="sidebar" class="ui-panel">
+        <div id="mission-info"></div>
+        <div id="turn-info"></div>
+        <div id="unit-list"></div>
+        <div id="battle-log"></div>
+        <button id="end-turn-btn" class="action-btn">END TURN</button>
+    </div>
+</div>
+
+<div id="action-menu"></div>
+<div id="result-panel"></div>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://esm.sh/three@0.162.0"
+    }
+}
+</script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

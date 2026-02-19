@@ -598,8 +598,52 @@
 - **2040 Platform**: Includes abolishing Tuesday, mandatory steroid usage, Death Star as national priority
 
 ### Next Sequel Seed: FLAGHACK 14
-- Tactics / XCOM-style genre shift
-- "Forbidden Knowledge" progression tiers
-- Egregore as collective enemy consciousness
-- President Jaguar's regime as setting
-- More Advanced Knowledge → Even More Advanced Knowledge → Forbidden Knowledge unlock chain
+- Turn-based tactics with Flag Commandments theme
+
+---
+
+## FLAGHACK 14: THE FLAG COMMANDMENTS
+
+### Concept
+- **Genre**: Turn-Based Tactics (XCOM-style)
+- **Theme**: Command Vexillomancer squads on a grid, place flags for tactical buffs, form pentagrams for AOE, battle Hippies, Ban Enforcers, and Schismmancers across 4 missions
+- **Key Innovation**: Flag placement as tactical buff system (+ATK/+DEF on flagged tiles), pentagram formation (5 flags = AOE damage to all enemies), 6 unit types with unique abilities, 4-mission campaign
+- **Addictiveness Hooks**: Tactical puzzle solving, unit management, mission progression, pentagram formation timing, unit ability combos
+
+### What improves over FH13
+- Genre shift to turn-based tactics adds deep strategic thinking
+- 6 unit types with unique abilities (Place Flag, Ley Blast, Shield, Antimeme, Steal Flag, Ban Strike)
+- Flag placement as persistent battlefield buffs
+- Pentagram formation as powerful AOE (5 flags devastate all enemies)
+- 4 missions with escalating difficulty and enemy composition
+- Grid-based positioning creates spatial puzzles
+- Enemy AI: pathfinding + prioritizes low-HP targets
+
+### Lore Integration
+- **Flag Commandments**: Two laws from Congress of Flags (from wiki)
+- **Schismmancers**: Enemy unit with antimeme ability (-2 ATK debuff)
+- **Ban Enforcers**: Enemy with double damage on flagged tiles
+- **Hippies**: Enemy with flag-stealing ability
+- **Signifiers**: Ranged allied unit (ley blast)
+- **Pentagram**: 5-flag formation deals AOE damage
+- **More Advanced Knowledge**: "Dr. Supremer" at "Megaer Harvard" — recursive parody (from wiki)
+
+### Completion Status: BUILT
+- **Folder**: `flaghack14/`
+- **Files**: 3 source modules + index.html (1086 lines total)
+- **Architecture**: Three.js ES modules + importmap
+- **Core Systems**: 8x8 tactical grid, 6 unit types, movement/attack/ability phases, flag placement + buff system, pentagram AOE, enemy AI, 4 missions, HP bars, action menu, battle log
+
+### Alch3my Wiki Fetches
+- **More Advanced Knowledge**: "Megaer Harvard", "Dr. Supremer", recursive parody of Advanced Knowledge, operates from "entirely different set of facts compatible with advanced knowledge"
+
+### New Lore Discovered
+- **More Advanced Knowledge**: Second-order recursion of AK at "Megaer Harvard"
+- **Dr. Supremer**: Created MAK, argues Megaer Harvard's superiority validates it
+- **Anamnesis**: Learning via remembering (part of MAK methodology)
+
+### Next Sequel Seed: FLAGHACK 15
+- Puzzle / Match-3 or Clicker/Idle genre shift
+- "Even More Advanced Knowledge" at "Megaest Harvard"
+- Forbidden Knowledge as ultimate unlock
+- Egregore as collective enemy
