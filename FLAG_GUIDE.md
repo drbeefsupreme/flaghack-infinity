@@ -176,8 +176,48 @@
 - **Ban Flags.jpg**: "BAN FLAGS FROM BURNS" - anti-Flag propaganda poster. INSPIRATION FOR FH6: An enemy faction of Flag Banners (anti-Vexillomancers) as antagonists. Political faction warfare mechanic.
 - **Find Your Flags.png**: Beautiful meadow scene with golden flags everywhere. "La Societe du Troisieme Etage." INSPIRATION FOR FH6: Open-world exploration collecting scattered flags across biomes. The Third Floor Society as a faction/questgiver.
 
-### Next Sequel Seed: FLAGHACK 6
-- **Concept**: "FLAGHACK 6: THE BAN" - A survival/base-building game where the Anti-Flag Faction ("The Ban") has outlawed flags from all Burns. The Vexillomancer must build a hidden flag sanctuary, recruit Signifiers, and lead a resistance. Inspired by "Ban Flags from Burns" propaganda and "Find Your Flags" open-world imagery.
-- **Genre Shift**: Survival base builder (from dungeon crawler)
-- **Key Innovation**: Faction reputation system (Vexillians vs The Ban), stealth flag placement, Signifier recruitment
-- **Addictiveness Hooks**: Base building (sunk cost), faction reputation (social hooks), stealth tension (loss aversion), Signifier collection (collection compulsion)
+---
+
+## FLAGHACK 6: THE BAN
+
+### Concept
+- **Genre**: Survival Base Builder + Stealth Resistance
+- **Theme**: Set in 2042 after the Noospheric Munitions Act banned all memes except Flags. Build a hidden flag sanctuary in the wasteland, recruit Signifiers, and resist Ban Patrols.
+- **Key Innovation**: Heat system (flag placement attracts patrols), decoy flags to misdirect raids, Signifier recruitment as autonomous helpers, resource gathering + crafting 6 building types
+- **Addictiveness Hooks**: Base building (sunk cost), patrol tension (loss aversion), Signifier collection (collection compulsion), day/night cycle risk management, reputation progression
+
+### What improves over FH5
+- Genre shift to survival/base-building adds persistent strategic investment
+- Heat/patrol system creates dynamic tension - more flags = more danger
+- Signifier recruitment adds NPC management and autonomous helpers
+- Resource gathering loop (wood, cloth, crystal) drives exploration
+- Decoy flags add strategic deception layer
+- Day/night cycle affects patrol danger
+- 6 building types with distinct functions (flag, tent, workshop, beacon, wall, decoy)
+- Reputation system provides progression across sessions
+- Victory condition combines flag count + Signifier recruitment
+
+### Lore Integration
+- **Noospheric Munitions Act of 2042**: From Alch3my wiki - banned memes but exempted flags
+- **President Jaguar**: Signed the Act
+- **Signifiers**: From Vexillomancy wiki - persons who carry flags and channel the will of the Crystal
+- **The Ban**: Anti-flag faction inspired by "BAN FLAGS FROM BURNS" propaganda
+- **La Societe du Troisieme Etage**: Third Floor Society referenced in FLAG_DOCS posters
+
+### Completion Status: BUILT
+- **Folder**: `flaghack6/`
+- **Files**: 7 source modules + index.html
+- **Architecture**: Three.js ES modules + importmap
+- **Core Systems**: Resource gathering (3 types), building placement (6 types), heat/raid system, Ban Patrol AI, Signifier recruitment/auto-gathering, day/night cycle, ley lines/pentagrams, reputation levels, decoy flag misdirection
+
+### Alch3my Wiki Fetches
+- **Noospheric Munitions Act of 2042**: Ban on memes, flags exempted, President Jaguar, Qualia OS
+
+### Post-Build FLAG_DOCS Review
+- **Triumph of Flags over Covid.jpg**: Epic angelic figure wielding yellow flag, standing atop defeated virus monster. "THE TRIUMPH OF FLAGS." INSPIRATION FOR FH7: Boss-rush action game where Vexillomancer-angel battles cosmic threats with flag powers. Triumphant/epic tone.
+
+### Next Sequel Seed: FLAGHACK 7
+- **Concept**: "FLAGHACK 7: TRIUMPH OF FLAGS" - An epic boss-rush bullet-hell where the Vexillomancer ascends as a Flag Angel, battling cosmic manifestations of anti-Flag forces. Each boss represents a different threat to flags (Disease, Censorship, Entropy, Hippie King, Null-time). Inspired by the "Triumph of Flags over Covid" artwork.
+- **Genre Shift**: Boss-rush bullet hell (from survival builder)
+- **Key Innovation**: Flag-based bullet patterns, boss phases tied to flag theology, ascension mechanic
+- **Addictiveness Hooks**: Boss mastery (flow state), pattern memorization (near-miss), power escalation (variable rewards), glory moments (climax design)
