@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLAGHACK 13: THE FLAGIC RALLY</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0612; overflow: hidden; font-family: 'Courier New', monospace; cursor: default; color: #ccaa88; }
+canvas { display: block; }
+
+#title-screen {
+    position: fixed; inset: 0; z-index: 100;
+    background: radial-gradient(ellipse at center, #1a0a2a 0%, #0a0612 60%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 1s;
+}
+#title-screen .pre { font-size: 0.7em; color: #555; letter-spacing: 0.3em; margin-bottom: 0.5em; text-transform: uppercase; }
+#title-screen h1 {
+    font-size: 2.6em; color: #ffd700;
+    text-shadow: 0 0 40px #ffd700, 0 0 80px #aa8800;
+    letter-spacing: 0.15em; margin-bottom: 0.1em;
+}
+#title-screen h2 {
+    font-size: 1.3em; color: #ffaa33; letter-spacing: 0.2em;
+    text-shadow: 0 0 20px #ffaa33; margin-bottom: 0.3em;
+}
+#title-screen .subtitle {
+    font-size: 0.8em; color: #886633; letter-spacing: 0.12em; margin-bottom: 1.5em; font-style: italic;
+}
+#title-screen .lore {
+    max-width: 480px; text-align: center; color: #665544; font-size: 0.72em;
+    line-height: 1.6; margin-bottom: 2em; padding: 0 1em;
+}
+#start-btn, .action-btn {
+    background: none; border: 1px solid #ffd700; color: #ffd700;
+    padding: 0.7em 2.2em; font-family: inherit; font-size: 1em;
+    letter-spacing: 0.2em; cursor: pointer; transition: all 0.3s;
+}
+#start-btn:hover, .action-btn:hover { background: #ffd70022; box-shadow: 0 0 20px #ffd70044; }
+#title-screen .controls {
+    margin-top: 1.2em; color: #444; font-size: 0.6em; line-height: 1.8;
+}
+
+#hud {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: none; justify-content: space-between; padding: 8px 15px;
+    background: linear-gradient(180deg, #0a0612cc 0%, #0a061200 100%);
+    font-size: 0.75em;
+}
+#hud-score { color: #ffd700; font-weight: bold; font-size: 1.1em; }
+#hud-distance { color: #888; }
+#hud-flags { color: #ffaa33; }
+#hud-combo { color: #ff6644; font-weight: bold; }
+#hud-speed { color: #555; }
+#hud-powerup { color: #88ccff; }
+
+#zone-announce {
+    position: fixed; top: 35%; left: 50%; transform: translateX(-50%); z-index: 15;
+    color: #ffd700; font-size: 1.5em; letter-spacing: 0.15em;
+    text-shadow: 0 0 30px #ffd700; opacity: 0; transition: opacity 1s;
+    pointer-events: none;
+}
+#powerup-announce {
+    position: fixed; top: 45%; left: 50%; transform: translateX(-50%); z-index: 15;
+    color: #88ccff; font-size: 1.2em; text-shadow: 0 0 20px #4488ff;
+    opacity: 0; transition: opacity 0.5s; pointer-events: none;
+}
+
+#death-screen {
+    position: fixed; inset: 0; z-index: 50;
+    background: #0a0612dd; display: none;
+    flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+}
+#death-screen h2 { color: #ffd700; font-size: 1.5em; margin-bottom: 0.5em; }
+#death-screen p { color: #886644; font-size: 0.8em; margin-bottom: 0.3em; }
+#death-screen .quote { font-style: italic; color: #665544; font-size: 0.7em; margin-top: 0.5em; }
+#death-screen .salute { color: #ffd700; font-size: 1.2em; margin: 0.5em 0; }
+#death-screen .victory-symbol { font-size: 3em; color: #ffd700; text-shadow: 0 0 40px #ffd700; margin-bottom: 0.3em; }
+#death-screen button { margin-top: 1em; }
+</style>
+</head>
+<body>
+
+<div id="title-screen">
+    <div class="pre">The Flaghack Saga — Chapter XIII</div>
+    <h1>FLAGHACK 13</h1>
+    <h2>THE FLAGIC RALLY</h2>
+    <div class="subtitle">"An endless runner through the ley line highway."</div>
+    <div class="lore">
+        Surf a ley line highway on a flag-powered hoverboard.
+        Collect golden flags for points and combos. Dodge hippies,
+        tents, and ban banners. Jump and slide through five
+        escalating zones — from the Playa to the Global Brain.<br><br>
+        Collect power-ups: Pentagram Shield, Time Piracy (slow time),
+        and Flag Magnet. Reach 10,000 meters to become a
+        Global Brain Node.<br><br>
+        <em>"The collective qualia-computational overmind on Earth."</em>
+    </div>
+    <button id="start-btn">START RUNNING</button>
+    <div class="controls">
+        A/D or Left/Right — Switch Lanes<br>
+        W/Up/Space — Jump &nbsp;|&nbsp; S/Down — Slide<br>
+        Collect flags &nbsp;|&nbsp; Dodge obstacles &nbsp;|&nbsp; Reach the Global Brain
+    </div>
+</div>
+
+<div id="hud">
+    <span id="hud-score">Score: 0</span>
+    <span id="hud-combo"></span>
+    <span id="hud-flags">Flags: 0</span>
+    <span id="hud-distance">0m</span>
+    <span id="hud-speed">15 km/h</span>
+    <span id="hud-powerup"></span>
+</div>
+
+<div id="zone-announce"></div>
+<div id="powerup-announce"></div>
+<div id="death-screen"></div>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://esm.sh/three@0.162.0"
+    }
+}
+</script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

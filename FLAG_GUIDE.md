@@ -547,8 +547,59 @@
 - **"Advancing out of control"**: The goal of Advanced Knowledge
 
 ### Next Sequel Seed: FLAGHACK 13
-- Racing / endless runner genre shift
-- "Forbidden Knowledge" as secret tier beyond Advanced Knowledge
-- "Egregore" (collective consciousness) as emergent AI opponent
-- More Advanced Knowledge / Even More Advanced Knowledge tiers
-- Time Piracy applied to racing (time manipulation power-ups)
+- Endless runner on ley line highway
+- Global Brain as endpoint
+- President Jaguar's 2040 platform as absurdist world-building
+
+---
+
+## FLAGHACK 13: THE FLAGIC RALLY
+
+### Concept
+- **Genre**: Endless Runner
+- **Theme**: Surf a ley line highway on a flag-powered hoverboard through 5 world zones to reach the Global Brain
+- **Key Innovation**: 3-lane runner with jump/slide mechanics, 5 escalating zones (Playa → Ley Line Highway → Crystal Caverns → Chronoschism → Global Brain), 3 power-ups (Pentagram Shield, Time Piracy slowdown, Flag Magnet), combo system with multiplier, 10km victory condition
+- **Addictiveness Hooks**: Speed escalation (flow state), combo chasing, distance milestones, zone discovery, power-up moments, one-more-try death loop
+
+### What improves over FH12
+- Genre shift to endless runner adds immediate action engagement
+- 3 lanes, jump, slide mechanics create reflexive gameplay
+- 5 visually distinct world zones transform the experience
+- 3 power-ups create variable reward moments
+- Combo multiplier rewards consistent play
+- Speed escalation creates increasing tension
+- 4 obstacle types + 3 collectible types + scenery
+- 10km victory condition gives clear goal
+- Instant restart for "one more try" compulsion
+
+### Lore Integration
+- **Ley line highway**: Running on ley lines between flag configurations
+- **Global Brain**: "Collective qualia-computational overmind" (from wiki) as final zone/victory
+- **Time Piracy**: Power-up that slows time (from wiki)
+- **Pentagram Shield**: Invincibility from sacred geometry
+- **The Chronoschism**: World zone based on null-time event
+- **Crystal Caverns**: Crystals of implied flag
+- **Hippies/Ban Banners**: Obstacles to dodge
+- **Flags**: Primary collectible, always yellow
+
+### Completion Status: BUILT
+- **Folder**: `flaghack13/`
+- **Files**: 2 source modules + index.html (808 lines total)
+- **Architecture**: Three.js ES modules + importmap
+- **Core Systems**: 3-lane endless runner, jump/slide, procedural obstacle/collectible spawning, 4 obstacle types, 3 collectible types, 3 power-ups, combo system, 5 world zones, 6 milestones, speed escalation, trail particles, death/restart, 10km victory
+
+### Alch3my Wiki Fetches
+- **2040 Election Platform**: President Jaguar, 39 absurdist policy proposals
+- **Global Brain**: "Collective qualia-computational overmind on Earth in the post-universal enlightenment era"
+
+### New Lore Discovered
+- **President Jaguar**: Won 2040 election with universally beloved but unfulfilled promises
+- **Global Brain**: Distinct from Universal Mind, may be intermediate developmental stage
+- **2040 Platform**: Includes abolishing Tuesday, mandatory steroid usage, Death Star as national priority
+
+### Next Sequel Seed: FLAGHACK 14
+- Tactics / XCOM-style genre shift
+- "Forbidden Knowledge" progression tiers
+- Egregore as collective enemy consciousness
+- President Jaguar's regime as setting
+- More Advanced Knowledge → Even More Advanced Knowledge → Forbidden Knowledge unlock chain
