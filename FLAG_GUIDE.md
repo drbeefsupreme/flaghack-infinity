@@ -83,11 +83,21 @@
 - Achievements give collection/completion compulsion
 - Multiple interacting systems create depth
 
+### From FH4-FH8
+- Tower defense wave structure creates "one more wave" compulsion
+- Roguelike permadeath raises stakes on every decision
+- Base building creates sunk-cost investment
+- Boss-rush pattern mastery drives flow-state replays
+- RTS management creates optimization puzzles
+
 ### Key Principles
 - Variable reward schedules work (random drug drops, random enchantments)
 - Loss aversion drives engagement (hippies steal YOUR flags)
 - Near-miss dynamics are untapped (could add close-call pentagram formations)
 - Mystery/discovery not yet fully explored (Geomantica divination system is perfect for this)
+- Factory/automation creates "just one more optimization" compulsion
+- Tech trees with meaningful unlocks create discovery dopamine hits
+- Idle/passive income generation creates return-to-play hooks
 
 ---
 
@@ -317,4 +327,62 @@
 - **Address sticker protocol**: "IF FOUND PLEASE LOSE / IF LOST RETURN TO TEMPLE"
 
 ### Next Sequel Seed: FLAGHACK 9
-- To be determined after reviewing remaining FLAG_DOCS (Poster B, FLAGISTAN AWAITS 2, LOGOS/, Art Assets/)
+- The Vexilloramanomicon (grimoire) as tech tree driver
+- Factory automation genre - flag production lines
+- "Flags are the end of Flags and the beginning of 10,000 Flags" = factory scaling
+
+---
+
+## FLAGHACK 9: THE VEXILLORAMANOMICON
+
+### Concept
+- **Genre**: Factory Automation / Idle Crafting
+- **Theme**: The Vexilloramanomicon (Book of FLAGs) has been unearthed. Build automated flag production lines on a grid — conveyors, crafters, enchanters, pentagram forges — to reach the Omega Configuration
+- **Key Innovation**: The Vexilloramanomicon grimoire IS the tech tree. Each page unlocks a new machine type. 10 pages from basic resources to the Omega Configuration. Grid-based factory with directional conveyors
+- **Addictiveness Hooks**: Factory optimization (flow state), idle production scaling, grimoire page unlocking (discovery/mystery), Flagic economy management, Omega Configuration as ultimate goal
+
+### What improves over FH8
+- Genre shift to factory automation adds optimization depth and idle satisfaction
+- Grid-based building with directional conveyors creates spatial puzzles
+- Vexilloramanomicon as grimoire/tech-tree merges lore with progression
+- 6 machine types (Source, Conveyor, Crafter, Enchanter, Assembler, Harvester)
+- 4 raw resources (cloth, lumber, dye, crystal) → flags → enchanted flags → pentagrams
+- Recipe chains create crafting depth (3-input flag crafting, 5-input pentagram assembly)
+- Flagic economy: earn by selling products, spend on machines and grimoire pages
+- Omega Configuration as ultimate victory condition
+
+### Lore Integration
+- **The Vexilloramanomicon**: Grimoire of Vexillomancy, "The Book of FLAGs" / "The FLAG Bible"
+- **Omega Configuration**: The ultimate arrangement all flags move toward (from wiki)
+- **"Flags are the end of Flags and the beginning of 10,000 Flags"**: Factory scaling
+- **"True and Eternal is the Flag within"**: Page quote for Flagic Harvester
+- **"Flags are a gateless gate, the invitation to all Madness"**: Ambient quote
+- **"Manifest your Quantum Destiny with FLAGS"**: Ambient quote
+- **Crystals of Implied Flag**: Crystal resource for enchantment
+- **Diamond-shaped cloth on lumber**: Flag crafting recipe
+- **Effigy**: Present as world landmark behind factory grid
+- **Pentagram formations**: Pentagram Forge assembles 5 flags into pentagrams
+
+### Completion Status: BUILT
+- **Folder**: `flaghack9/`
+- **Files**: 5 source modules + index.html (1438 lines total)
+- **Architecture**: Three.js ES modules + importmap
+- **Core Systems**: 20x20 grid, 6 machine types, 4 resources, directional conveyors, recipe processing (crafter/enchanter/assembler), Flagic economy, Vexilloramanomicon grimoire (10 pages), item movement/animation, Effigy landmark, playa world with camps/flags/dust, hover/build/delete UI, Omega Configuration victory
+
+### Alch3my Wiki Fetches
+- **Talk:Survey_Flags**: "Flags are the end of Flags and the beginning of 10,000 Flags", "Flags are a gateless gate", "True and Eternal is the Flag within", "Flags as a voluntary virus", The Vexilloramanomicon reference
+- **Vexilloramanomicon page**: Confirmed as grimoire of Vexillomancy, alternate names "Book of FLAGs" and "FLAG Bible"
+- **Ideas page**: "The idea is a living form" (Giordano Bruno) — thematic for flags-as-ideas
+
+### New Lore Discovered
+- **The Vexilloramanomicon**: Sacred grimoire, Book of FLAGs, FLAG Bible
+- **"Flags are a gateless gate, the invitation to all Madness"**: From Talk:Survey_Flags
+- **"Flags as a voluntary virus"**: Spreading values through social mechanisms
+- **"Every idea is an idol, if not reborn in living experience"**: Hamann quote, thematic
+
+### Next Sequel Seed: FLAGHACK 10
+- Card Battler or Dating Sim genre shift
+- Explore "Flags as a voluntary virus" — infection/spreading mechanic
+- The Vexilloramanomicon could contain card spells
+- "Every idea is an idol" — corruption/purification mechanic
+- Consider rhythm game tied to flag placement cadence

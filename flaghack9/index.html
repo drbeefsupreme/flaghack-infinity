@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLAGHACK 9: THE VEXILLORAMANOMICON</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0612; overflow: hidden; font-family: 'Courier New', monospace; cursor: default; }
+canvas { display: block; }
+
+#title-screen {
+    position: fixed; inset: 0; z-index: 100;
+    background: radial-gradient(ellipse at center, #1a0a2a 0%, #0a0612 60%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 1.5s;
+}
+#title-screen .pre { font-size: 0.7em; color: #555; letter-spacing: 0.3em; margin-bottom: 0.5em; text-transform: uppercase; }
+#title-screen h1 {
+    font-size: 2.8em; color: #ffd700;
+    text-shadow: 0 0 40px #ffd700, 0 0 80px #aa8800;
+    letter-spacing: 0.15em; margin-bottom: 0.1em;
+}
+#title-screen h2 {
+    font-size: 1.4em; color: #9966cc; letter-spacing: 0.2em;
+    text-shadow: 0 0 20px #6633aa; margin-bottom: 0.3em;
+}
+#title-screen .subtitle {
+    font-size: 0.85em; color: #886633; letter-spacing: 0.15em; margin-bottom: 1.5em;
+    font-style: italic;
+}
+#title-screen .lore {
+    max-width: 500px; text-align: center; color: #665544; font-size: 0.75em;
+    line-height: 1.6; margin-bottom: 2em; padding: 0 1em;
+}
+#start-btn {
+    background: none; border: 1px solid #ffd700; color: #ffd700;
+    padding: 0.8em 2.5em; font-family: inherit; font-size: 1.1em;
+    letter-spacing: 0.2em; cursor: pointer; transition: all 0.3s;
+}
+#start-btn:hover { background: #ffd70022; box-shadow: 0 0 20px #ffd70044; }
+#title-screen .controls {
+    margin-top: 1.5em; color: #444; font-size: 0.65em; line-height: 1.8;
+}
+
+/* HUD */
+#hud {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    background: linear-gradient(180deg, #0a0612ee 0%, #0a061200 100%);
+    padding: 8px 15px; color: #ccaa77; font-size: 0.75em;
+}
+.hud-row { display: flex; justify-content: space-between; gap: 20px; }
+#hud-flagic { color: #ffd700; font-weight: bold; }
+#hud-pages { color: #9966cc; }
+
+/* Build bar */
+#build-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
+    background: linear-gradient(0deg, #0a0612ee 0%, #0a061200 100%);
+    padding: 8px 15px;
+}
+.build-title { color: #888; font-size: 0.65em; letter-spacing: 0.15em; margin-bottom: 4px; }
+.build-items { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+.build-btn {
+    background: #1a1a2a; border: 1px solid #444; color: #ccc;
+    padding: 4px 10px; font-family: inherit; font-size: 0.7em;
+    cursor: pointer; transition: all 0.2s; border-radius: 2px;
+}
+.build-btn:hover { background: #2a2a3a; }
+.build-btn.selected { background: #2a1a00; border-color: #ffd700; color: #ffd700; }
+.build-hint { color: #555; font-size: 0.6em; }
+
+/* Grimoire Panel */
+#grimoire-panel {
+    position: fixed; inset: 5vh 10vw; z-index: 50;
+    background: radial-gradient(ellipse at center, #1a0a2a 0%, #0a0612 100%);
+    border: 1px solid #6633aa; border-radius: 4px;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 20px; overflow-y: auto; color: #ccaa88;
+}
+#grimoire-panel h2 {
+    color: #ffd700; font-size: 1.5em; letter-spacing: 0.2em;
+    text-shadow: 0 0 20px #ffd700; margin-bottom: 0.2em;
+}
+.grimoire-subtitle { color: #9966cc; font-size: 0.8em; letter-spacing: 0.15em; margin-bottom: 1em; }
+.pages { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 500px; }
+.page {
+    border: 1px solid #333; padding: 10px; border-radius: 3px; transition: all 0.3s;
+}
+.page.unlocked { border-color: #ffd700; background: #1a1a0a22; }
+.page.locked { border-color: #333; opacity: 0.7; }
+.page-name { color: #ffd700; font-size: 0.9em; font-weight: bold; margin-bottom: 4px; }
+.page-desc { color: #886644; font-size: 0.75em; font-style: italic; margin-bottom: 4px; }
+.page-cost { color: #cc6633; font-size: 0.7em; }
+.page-status { color: #66aa44; font-size: 0.7em; }
+.unlock-btn {
+    background: none; border: 1px solid #ffd700; color: #ffd700;
+    padding: 3px 12px; font-family: inherit; font-size: 0.7em;
+    cursor: pointer; margin-top: 4px; transition: all 0.2s;
+}
+.unlock-btn:hover { background: #ffd70022; }
+.grimoire-close { color: #555; font-size: 0.65em; margin-top: 1em; }
+
+/* Tooltip */
+#tooltip {
+    position: fixed; z-index: 20; background: #1a1a2aee; border: 1px solid #555;
+    color: #ccaa88; padding: 4px 8px; font-size: 0.65em; pointer-events: none;
+    border-radius: 2px;
+}
+
+/* Quote display */
+#quote-display {
+    position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%); z-index: 5;
+    color: #665544; font-size: 0.65em; font-style: italic; letter-spacing: 0.1em;
+    opacity: 0.6; transition: opacity 1s; white-space: nowrap;
+}
+
+/* Float text */
+.float-text {
+    position: fixed; z-index: 15; color: #ffd700; font-size: 0.8em; font-weight: bold;
+    pointer-events: none; text-shadow: 0 0 10px #ffd700;
+    transform: translate(-50%, -50%); transition: opacity 0.3s;
+}
+
+/* Omega overlay */
+#omega-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: radial-gradient(ellipse at center, #2a1a00cc 0%, #0a0612ee 100%);
+    display: flex; align-items: center; justify-content: center;
+}
+.omega-content {
+    text-align: center; color: #ccaa77; max-width: 500px;
+}
+.omega-symbol { font-size: 5em; color: #ffd700; text-shadow: 0 0 60px #ffd700; margin-bottom: 0.2em; }
+.omega-content h1 { color: #ffd700; font-size: 1.8em; letter-spacing: 0.15em; margin-bottom: 0.3em; }
+.omega-content h2 { color: #9966cc; font-size: 1em; font-style: italic; margin-bottom: 1em; }
+.omega-content p { color: #886644; font-size: 0.8em; margin-bottom: 0.3em; }
+.omega-salute { color: #ffd700; font-size: 1.5em; margin: 1em 0; letter-spacing: 0.2em; text-shadow: 0 0 20px #ffd700; }
+.omega-content button {
+    background: none; border: 1px solid #ffd700; color: #ffd700;
+    padding: 0.5em 1.5em; font-family: inherit; font-size: 0.9em;
+    cursor: pointer; margin-top: 0.5em;
+}
+</style>
+</head>
+<body>
+
+<div id="title-screen">
+    <div class="pre">The Flaghack Saga Continues</div>
+    <h1>FLAGHACK 9</h1>
+    <h2>THE VEXILLORAMANOMICON</h2>
+    <div class="subtitle">"The Book of FLAGs — A Grimoire of Vexillomancy"</div>
+    <div class="lore">
+        The Vexilloramanomicon has been unearthed from beneath the Effigy.
+        Its pages reveal the secrets of automated Flag production —
+        conveyor belts, crafting altars, enchantment forges, and the
+        mythic Pentagram Assembly. Build the ultimate Flag factory.
+        Unlock every page. Reach the Omega Configuration.<br><br>
+        <em>"Flags are the end of Flags and the beginning of 10,000 Flags."</em>
+    </div>
+    <button id="start-btn">BEGIN THE WORK</button>
+    <div class="controls">
+        WASD/Arrows — Pan Camera &nbsp;|&nbsp; Scroll — Zoom<br>
+        Click — Place Machine &nbsp;|&nbsp; R — Rotate &nbsp;|&nbsp; X — Delete Mode<br>
+        G — Grimoire &nbsp;|&nbsp; 1-9 — Quick Select &nbsp;|&nbsp; ESC — Cancel
+    </div>
+</div>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://esm.sh/three@0.162.0"
+    }
+}
+</script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
