@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLAGHACK 4: GEOMANTICA</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; overflow: hidden; font-family: 'Courier New', monospace; cursor: crosshair; }
+canvas { display: block; }
+
+#title-screen {
+    position: fixed; inset: 0; z-index: 100;
+    background: radial-gradient(ellipse at center, #1a1a00 0%, #0a0a0a 70%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 1s;
+}
+#title-screen h1 {
+    font-size: 4em; color: #ffd700; text-shadow: 0 0 30px #ffd700, 0 0 60px #aa8800;
+    letter-spacing: 0.2em; margin-bottom: 0.1em;
+}
+#title-screen h2 {
+    font-size: 1.8em; color: #aa8800; letter-spacing: 0.4em; margin-bottom: 2em;
+}
+#title-screen .subtitle {
+    font-size: 0.9em; color: #666; margin-bottom: 0.5em;
+}
+#title-screen .start-prompt {
+    font-size: 1.2em; color: #ffd700; animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+#hud {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: none; padding: 10px 15px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+    pointer-events: none;
+}
+#hud-top { display: flex; justify-content: space-between; align-items: flex-start; }
+#hud-left, #hud-right { display: flex; flex-direction: column; gap: 4px; }
+.hud-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.1em; }
+.hud-value { font-size: 16px; color: #ffd700; font-weight: bold; }
+.hud-value.flagic { color: #aa44ff; }
+.hud-value.wave { color: #ff4444; }
+.hud-value.hp { color: #44ff44; }
+
+#wave-banner {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 20; display: none;
+    font-size: 3em; color: #ff4444; text-shadow: 0 0 30px #ff0000;
+    letter-spacing: 0.3em; text-align: center;
+    pointer-events: none;
+}
+#wave-banner .wave-sub {
+    font-size: 0.4em; color: #ffd700; letter-spacing: 0.1em; margin-top: 0.3em;
+}
+
+#geomantica-panel {
+    position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: none;
+    background: rgba(0,0,0,0.85); border: 1px solid #ffd700; border-radius: 8px;
+    padding: 8px 16px; pointer-events: none; text-align: center;
+}
+#geomantica-name { font-size: 14px; color: #ffd700; font-weight: bold; }
+#geomantica-desc { font-size: 11px; color: #aa8800; margin-top: 2px; }
+
+#spell-bar {
+    position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: none;
+    background: rgba(0,0,0,0.7); border-radius: 8px; padding: 6px 10px;
+    pointer-events: none; display: flex; gap: 8px;
+}
+.spell-slot {
+    width: 44px; height: 44px; border: 2px solid #444; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: #ffd700; position: relative;
+}
+.spell-slot.active { border-color: #ffd700; box-shadow: 0 0 10px #ffd700; }
+.spell-slot .spell-key {
+    position: absolute; bottom: -14px; font-size: 10px; color: #888;
+}
+.spell-slot .spell-cooldown {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.7);
+    border-radius: 4px; display: none;
+}
+
+#game-over {
+    position: fixed; inset: 0; z-index: 50; display: none;
+    background: rgba(0,0,0,0.9);
+    flex-direction: column; align-items: center; justify-content: center;
+}
+#game-over h1 { font-size: 3em; color: #ff4444; margin-bottom: 0.3em; }
+#game-over .stats { font-size: 1.1em; color: #ffd700; margin-bottom: 1.5em; text-align: center; line-height: 1.8; }
+#game-over .restart { font-size: 1.2em; color: #ffd700; animation: pulse 2s infinite; }
+
+#notification {
+    position: fixed; top: 80px; left: 50%; transform: translateX(-50%);
+    z-index: 30; display: none; padding: 8px 20px;
+    background: rgba(0,0,0,0.85); border: 1px solid #ffd700; border-radius: 6px;
+    font-size: 14px; color: #ffd700; pointer-events: none;
+    transition: opacity 0.5s;
+}
+
+#controls-hint {
+    position: fixed; bottom: 10px; right: 10px; z-index: 10;
+    font-size: 10px; color: #444; pointer-events: none; text-align: right; line-height: 1.6;
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<div id="title-screen">
+    <div class="subtitle">THE FLAGHACK SERIES PRESENTS</div>
+    <h1>FLAGHACK 4</h1>
+    <h2>GEOMANTICA</h2>
+    <div class="subtitle">A Vexillomantic Tower Defense</div>
+    <div class="subtitle" style="margin-top:1em; color:#555; font-style:italic;">"Each Flag is itself a Flag, and each Flag is every Flag"</div>
+    <div class="start-prompt" style="margin-top:2em;">CLICK TO BEGIN</div>
+</div>
+
+<div id="hud">
+    <div id="hud-top">
+        <div id="hud-left">
+            <div><span class="hud-label">Flags </span><span class="hud-value" id="hud-flags">10</span></div>
+            <div><span class="hud-label">Flagic </span><span class="hud-value flagic" id="hud-flagic">0</span></div>
+            <div><span class="hud-label">HP </span><span class="hud-value hp" id="hud-hp">100</span></div>
+        </div>
+        <div id="hud-right">
+            <div><span class="hud-label">Wave </span><span class="hud-value wave" id="hud-wave">1</span></div>
+            <div><span class="hud-label">Score </span><span class="hud-value" id="hud-score">0</span></div>
+            <div><span class="hud-label">Pentagrams </span><span class="hud-value" id="hud-pentagrams">0</span></div>
+        </div>
+    </div>
+</div>
+
+<div id="wave-banner">
+    <div id="wave-title">WAVE 1</div>
+    <div class="wave-sub" id="wave-subtitle">The Hippies Approach...</div>
+</div>
+
+<div id="geomantica-panel">
+    <div id="geomantica-name"></div>
+    <div id="geomantica-desc"></div>
+</div>
+
+<div id="spell-bar">
+    <div class="spell-slot" data-spell="0"><span>&#9873;</span><span class="spell-key">1</span><div class="spell-cooldown"></div></div>
+    <div class="spell-slot" data-spell="1"><span>&#10038;</span><span class="spell-key">2</span><div class="spell-cooldown"></div></div>
+    <div class="spell-slot" data-spell="2"><span>&#9733;</span><span class="spell-key">3</span><div class="spell-cooldown"></div></div>
+    <div class="spell-slot" data-spell="3"><span>&#8982;</span><span class="spell-key">4</span><div class="spell-cooldown"></div></div>
+</div>
+
+<div id="game-over">
+    <h1>THE EFFIGY FALLS</h1>
+    <div class="stats" id="game-over-stats"></div>
+    <div class="restart">CLICK TO TRY AGAIN</div>
+</div>
+
+<div id="notification"></div>
+
+<div id="controls-hint">
+    WASD - Move | LMB - Place Flag<br>
+    RMB - Pick Up Flag | 1-4 - Spells<br>
+    SPACE - Cast | E - Interact
+</div>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://esm.sh/three@0.170.0",
+        "three/addons/": "https://esm.sh/three@0.170.0/examples/jsm/"
+    }
+}
+</script>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
