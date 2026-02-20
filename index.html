@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLAGHACK ARCHIVE</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #0a0a0a;
+            font-family: 'Courier New', monospace;
+            color: #c9c9c9;
+            min-height: 100vh;
+            cursor: crosshair;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(ellipse at center, #1a1a00 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #ffd700;
+            text-shadow: 0 0 30px #ffd700, 0 0 60px #aa8800;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.3em;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #666;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .intro {
+            text-align: center;
+            color: #555;
+            margin-bottom: 60px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .games-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .game-card {
+            display: block;
+            background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
+            border: 1px solid #222;
+            padding: 25px 30px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: #333;
+            transition: background 0.3s ease;
+        }
+
+        .game-card:hover {
+            border-color: #ffd700;
+            background: linear-gradient(135deg, #1a1a00 0%, #0f0f0a 100%);
+            transform: translateX(8px);
+        }
+
+        .game-card:hover::before {
+            background: #ffd700;
+        }
+
+        .game-card:hover h2 {
+            color: #ffd700;
+            text-shadow: 0 0 20px #ffd700;
+        }
+
+        .game-card:hover .game-number {
+            color: #ffd700;
+        }
+
+        .game-number {
+            font-size: 0.75em;
+            color: #444;
+            letter-spacing: 0.2em;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .game-card h2 {
+            font-size: 1.4em;
+            color: #aaa;
+            letter-spacing: 0.1em;
+            font-weight: normal;
+            transition: all 0.3s ease;
+            margin-bottom: 8px;
+        }
+
+        .game-card .description {
+            font-size: 0.85em;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .cta {
+            text-align: center;
+            margin-top: 80px;
+            padding: 30px;
+            border: 1px dashed #333;
+            color: #444;
+            font-size: 0.9em;
+            letter-spacing: 0.1em;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            color: #333;
+            font-size: 0.75em;
+            letter-spacing: 0.2em;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2em; }
+            .game-card { padding: 20px; }
+            .game-card h2 { font-size: 1.1em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FLAGHACK</h1>
+            <p class="subtitle">The Complete Archive</p>
+        </header>
+
+        <p class="intro">
+            A collection of browser-based flag games. Click any entry below to begin your journey into the mysteries of the flags.
+        </p>
+
+        <div class="games-grid">
+            <a href="flaghack4/" class="game-card">
+                <p class="game-number">04</p>
+                <h2>GEOMANTICA</h2>
+                <p class="description">The foundational text. Learn the sacred geometry of flags and their ancient origins.</p>
+            </a>
+
+            <a href="flaghack5/" class="game-card">
+                <p class="game-number">05</p>
+                <h2>CHAKRA VEXILLOMANTIA</h2>
+                <p class="description">Channel the energy centers through the power of banners and standards.</p>
+            </a>
+
+            <a href="flaghack6/" class="game-card">
+                <p class="game-number">06</p>
+                <h2>THE BAN</h2>
+                <p class="description">Discover the forbidden knowledge and the great restriction that shaped the movement.</p>
+            </a>
+
+            <a href="flaghack7/" class="game-card">
+                <p class="game-number">07</p>
+                <h2>TRIUMPH OF FLAGS</h2>
+                <p class="description">Witness the great victory and the spreading of the flag doctrine across nations.</p>
+            </a>
+
+            <a href="flaghack8/" class="game-card">
+                <p class="game-number">08</p>
+                <h2>THE GREAT SURVEY</h2>
+                <p class="description">Map the uncharted territories of flag lore and document your findings.</p>
+            </a>
+
+            <a href="flaghack9/" class="game-card">
+                <p class="game-number">09</p>
+                <h2>THE VEXILLORAMANOMICON</h2>
+                <p class="description">The ultimate compendium of flag arcana. Proceed with caution, seeker.</p>
+            </a>
+
+            <a href="flaghack10/" class="game-card">
+                <p class="game-number">10</p>
+                <h2>CONGRESS OF THE FLAGS</h2>
+                <p class="description">The historic gathering where the masters convened to debate the great questions.</p>
+            </a>
+
+            <a href="flaghack11/" class="game-card">
+                <p class="game-number">11</p>
+                <h2>TIME PIRACY</h2>
+                <p class="description">Navigate the temporal streams and recover the flags that were lost to history.</p>
+            </a>
+
+            <a href="flaghack12/" class="game-card">
+                <p class="game-number">12</p>
+                <h2>ADVANCED KNOWLEDGE</h2>
+                <p class="description">For the devoted scholar. Deep truths await those who have mastered the basics.</p>
+            </a>
+
+            <a href="flaghack13/" class="game-card">
+                <p class="game-number">13</p>
+                <h2>THE FLAGIC RALLY</h2>
+                <p class="description">The grand assembly of the faithful. Show your devotion through旗帜 mastery.</p>
+            </a>
+
+            <a href="flaghack14/" class="game-card">
+                <p class="game-number">14</p>
+                <h2>THE FLAG COMMANDMENTS</h2>
+                <p class="description">The final revelations. Fourteen sacred laws that govern the universe of flags.</p>
+            </a>
+        </div>
+
+        <div class="cta">
+            ← Select any entry above to begin →
+        </div>
+
+        <footer>
+            FLAGHACK ARCHIVE // EST. 2016
+        </footer>
+    </div>
+</body>
+</html>
